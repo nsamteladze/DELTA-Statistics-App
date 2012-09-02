@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, DeltaStatisticsActivity!</string>
+    <string name="app_name">DeltaStatistics</string>
+    <string name="StatFilePath">DeltaStatistics/Statistics</string>
+    <string name="StatFileName">stat.txt</string>
+
+</resources>
