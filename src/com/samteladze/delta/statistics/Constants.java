@@ -2,12 +2,17 @@ package com.samteladze.delta.statistics;
 
 public class Constants 
 {
-	public final static String NextLine = "\r\n";
-	public final static String EndItem = "---\r\n";
-	public final static String EndSection = "%%%\r\n";
-	public final static String EndFile = "$$$\r\n";
+	public static final String NextLine = "\r\n";
+	public static final String EndItem = "---\r\n";
+	public static final String EndSection = "%%%\r\n";
+	public static final String EndFile = "$$$\r\n";
+	public static final String NotFound = "None";
 	
-	public final static String MailText = "Current statistics.";
-	public final static String MailSubject = "Delta Statistics";
-	public final static String MailAddress = "delta.statistics@gmail.com";
+	public static final int NumberOfFieldsFromPackageInfo = 6;
+	
+	public static final String DateFormat = "yy,MM,dd,h,mm,aa,ss";
+	
+	public static final String MailText = "Current statistics.";
+	public static final String MailSubject = "Delta Statistics";
+	public static final String MailAddress = "delta.statistics@gmail.com";
 }
