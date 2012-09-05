@@ -1,7 +1,8 @@
-package com.samteladze.delta.statistics;
+package com.samteladze.delta.statistics.Utils;
 
 import java.io.File;
 
+import com.samteladze.delta.statistics.R;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;

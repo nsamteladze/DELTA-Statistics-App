@@ -1,0 +1,810 @@
+Number of applications: 101
+------------------------------
+Package name: com.weather.Weather
+App name: The Weather Channel
+Version name: 3.7.1
+Version code: 30701
+Code size: 7450624
+First install time: 09/04/2012 3:42:45 am
+Last update time: 09/04/2012 3:42:45 am
+------------------------------
+Package name: com.google.android.maps.mytracks
+App name: My Tracks
+Version name: 2.0
+Version code: 48
+Code size: 3809280
+First install time: 07/26/2012 3:45:32 pm
+Last update time: 07/26/2012 3:45:32 pm
+------------------------------
+Package name: com.usf.research
+App name: App Patch
+Version name: 1.0
+Version code: 1
+Code size: 167936
+First install time: 04/23/2012 2:59:11 am
+Last update time: 05/03/2012 2:21:56 pm
+------------------------------
+Package name: com.droidhen.game.dinosaur
+App name: Dinosaur War
+Version name: 1.2.8
+Version code: 34
+Code size: 21655552
+First install time: 09/04/2012 3:41:54 am
+Last update time: 09/04/2012 3:41:54 am
+------------------------------
+Package name: com.denper.addonsdetector
+App name: Addons Detector
+Version name: 2.7
+Version code: 23
+Code size: 696320
+First install time: 08/02/2012 7:51:02 pm
+Last update time: 08/29/2012 2:20:20 pm
+------------------------------
+Package name: com.pv.android.verizon.mod
+App name: V CAST Music
+Version name: 03.72.110
+Version code: 32210
+Code size: 9789440
+First install time: 11/18/2011 6:11:07 am
+Last update time: 04/18/2012 6:58:17 pm
+------------------------------
+Package name: com.zynga.words
+App name: Words Free
+Version name: 5.0.2
+Version code: 5002
+Code size: 15167488
+First install time: 09/04/2012 3:49:22 am
+Last update time: 09/04/2012 3:49:22 am
+------------------------------
+Package name: com.google.android.apps.schemer
+App name: Schemer
+Version name: 1.2.0a
+Version code: 13
+Code size: 9199616
+First install time: 07/26/2012 3:50:23 pm
+Last update time: 07/26/2012 3:50:23 pm
+------------------------------
+Package name: com.tunewiki.lyricplayer.android
+App name: TuneWiki
+Version name: 4.0.7
+Version code: 400073
+Code size: 16334848
+First install time: 11/18/2011 6:11:07 am
+Last update time: 08/20/2012 8:54:20 pm
+------------------------------
+Package name: goldenshorestechnologies.brightestflashlight.free
+App name: Brightest Flashlight Free
+Version name: 1.9.7
+Version code: 19
+Code size: 3166208
+First install time: 09/04/2012 3:33:41 am
+Last update time: 09/04/2012 3:33:41 am
+------------------------------
+Package name: com.instagram.android
+App name: Instagram
+Version name: 3.0.5
+Version code: 305
+Code size: 18976768
+First install time: 09/04/2012 3:51:36 am
+Last update time: 09/04/2012 3:51:36 am
+------------------------------
+Package name: com.rhapsody
+App name: Rhapsody
+Version name: 2.2.4.63
+Version code: 43
+Code size: 5627904
+First install time: 11/18/2011 6:11:09 am
+Last update time: 08/30/2012 2:56:18 pm
+------------------------------
+Package name: com.amazon.kindle
+App name: Amazon Kindle
+Version name: 3.6.0.87
+Version code: 560
+Code size: 19128320
+First install time: 11/18/2011 6:11:06 am
+Last update time: 07/18/2012 1:33:34 pm
+------------------------------
+Package name: com.devuni.flashlight
+App name: Flashlight
+Version name: 4.9.2
+Version code: 137
+Code size: 1900544
+First install time: 09/04/2012 3:55:09 am
+Last update time: 09/04/2012 3:55:09 am
+------------------------------
+Package name: com.gau.go.launcherex
+App name: GO Launcher EX
+Version name: 3.13
+Version code: 120
+Code size: 10874880
+First install time: 09/04/2012 3:56:05 am
+Last update time: 09/04/2012 3:56:05 am
+------------------------------
+Package name: com.google.android.street
+App name: Street View
+Version name: 1.8.1.0
+Version code: 18100
+Code size: 593920
+First install time: 11/18/2011 7:14:34 am
+Last update time: 07/18/2012 1:33:57 pm
+------------------------------
+Package name: com.google.android.googlequicksearchbox
+App name: Google Search
+Version name: 1.3.3.247963
+Version code: 133247963
+Code size: 1294336
+First install time: 11/18/2011 7:14:34 am
+Last update time: 04/18/2012 6:51:17 pm
+------------------------------
+Package name: com.facebook.katana
+App name: Facebook
+Version name: 1.9.9
+Version code: 41873
+Code size: 17891328
+First install time: 07/26/2012 3:51:22 pm
+Last update time: 09/01/2012 3:48:58 am
+------------------------------
+Package name: com.google.android.apps.maps
+App name: Maps
+Version name: 6.11.1
+Version code: 611010202
+Code size: 13021184
+First install time: 11/18/2011 7:14:34 am
+Last update time: 08/29/2012 2:20:59 pm
+------------------------------
+Package name: com.pandora.android
+App name: Pandora
+Version name: 1.7
+Version code: 36
+Code size: 7266304
+First install time: 09/04/2012 3:57:43 am
+Last update time: 09/04/2012 3:57:43 am
+------------------------------
+Package name: com.wf.wellsfargomobile
+App name: Wells Fargo
+Version name: 2.2
+Version code: 700220
+Code size: 749568
+First install time: 04/23/2012 1:06:07 pm
+Last update time: 08/11/2012 7:23:20 pm
+------------------------------
+Package name: com.google.android.apps.docs
+App name: Drive
+Version name: 1.1.1.6
+Version code: 1010106
+Code size: 10936320
+First install time: 08/02/2012 7:24:28 pm
+Last update time: 08/02/2012 7:24:28 pm
+------------------------------
+Package name: com.amazon.mp3
+App name: Amazon MP3
+Version name: 2.6.1
+Version code: 2061514
+Code size: 6922240
+First install time: 09/04/2012 3:58:47 am
+Last update time: 09/04/2012 3:58:47 am
+------------------------------
+Package name: com.google.android.apps.googlevoice
+App name: Google Voice
+Version name: 0.4.2.54
+Version code: 40254
+Code size: 8048640
+First install time: 07/26/2012 3:46:38 pm
+Last update time: 07/26/2012 3:46:38 pm
+------------------------------
+Package name: com.jb.gosms
+App name: GO SMS Pro
+Version name: 4.62
+Version code: 103
+Code size: 14782464
+First install time: 09/04/2012 3:37:21 am
+Last update time: 09/04/2012 3:37:21 am
+------------------------------
+Package name: com.pv.android.verizon.avod
+App name: Verizon Video
+Version name: 6.2.51
+Version code: 160251
+Code size: 19546112
+First install time: 11/18/2011 6:11:07 am
+Last update time: 04/22/2012 3:24:00 am
+------------------------------
+Package name: com.google.android.videos
+App name: Google Play Movies & TV
+Version name: 2.0.21
+Version code: 2021
+Code size: 5476352
+First install time: 07/26/2012 3:45:52 pm
+Last update time: 07/26/2012 3:45:52 pm
+------------------------------
+Package name: tunein.player
+App name: TuneIn Radio
+Version name: 6.5
+Version code: 28
+Code size: 6082560
+First install time: 09/04/2012 3:46:11 am
+Last update time: 09/04/2012 3:46:11 am
+------------------------------
+Package name: com.gravitymobile.app.hornbill
+App name: Apps
+Version name: 3.06.86
+Version code: 30686
+Code size: 4255744
+First install time: 11/18/2011 6:11:07 am
+Last update time: 08/02/2012 7:12:10 pm
+------------------------------
+Package name: com.adobe.reader
+App name: Adobe Reader
+Version name: 10.3.1
+Version code: 64606
+Code size: 10960896
+First install time: 11/18/2011 6:11:06 am
+Last update time: 07/25/2012 7:02:08 pm
+------------------------------
+Package name: com.google.android.voicesearch
+App name: Voice Search
+Version name: 2.1.4
+Version code: 214
+Code size: 5025792
+First install time: 11/18/2011 7:14:34 am
+Last update time: 04/18/2012 6:53:13 pm
+------------------------------
+Package name: com.vzw.hs.android.modlite
+App name: Verizon Tones
+Version name: 5.0
+Version code: 25
+Code size: 389120
+First install time: 11/18/2011 6:11:07 am
+Last update time: 08/02/2012 2:24:26 pm
+------------------------------
+Package name: com.rovio.angrybirdsspace.ads
+App name: Angry Birds
+Version name: 1.3.0
+Version code: 1300
+Code size: 33292288
+First install time: 09/04/2012 3:48:50 am
+Last update time: 09/04/2012 3:48:50 am
+------------------------------
+Package name: com.vcast.mediamanager
+App name: Backup Assistant Plus
+Version name: 5.0.1.31
+Version code: 5000131
+Code size: 5992448
+First install time: 11/18/2011 6:11:06 am
+Last update time: 07/18/2012 1:34:27 pm
+------------------------------
+Package name: com.vkontakte.android
+App name: VKontakte
+Version name: 2.7.1
+Version code: 53
+Code size: 10911744
+First install time: 07/26/2012 3:52:17 pm
+Last update time: 08/28/2012 7:27:38 pm
+------------------------------
+Package name: com.ebay.mobile
+App name: eBay
+Version name: 1.8.3.4
+Version code: 23
+Code size: 9437184
+First install time: 09/04/2012 3:52:37 am
+Last update time: 09/04/2012 3:52:37 am
+------------------------------
+Package name: com.zinio.mobile.android.reader
+App name: Zinio
+Version name: 1.90.5997
+Version code: 5997
+Code size: 14049280
+First install time: 09/04/2012 3:53:09 am
+Last update time: 09/04/2012 3:53:09 am
+------------------------------
+Package name: com.vznavigator.ADR6400L
+App name: VZ Navigator
+Version name: 8.0.1.182
+Version code: 801182
+Code size: 13180928
+First install time: 11/18/2011 6:11:07 am
+Last update time: 07/24/2012 5:36:54 pm
+------------------------------
+Package name: com.evernote
+App name: Evernote
+Version name: 4.2
+Version code: 14203
+Code size: 11153408
+First install time: 04/22/2012 2:13:31 pm
+Last update time: 08/30/2012 2:46:14 pm
+------------------------------
+Package name: com.google.zxing.client.android
+App name: Barcode Scanner
+Version name: 4.2
+Version code: 84
+Code size: 950272
+First install time: 09/04/2012 3:54:46 am
+Last update time: 09/04/2012 3:54:46 am
+------------------------------
+Package name: com.google.android.apps.translate
+App name: Translate
+Version name: 2.5
+Version code: 122
+Code size: 11182080
+First install time: 04/23/2012 1:18:26 pm
+Last update time: 09/01/2012 11:43:15 am
+------------------------------
+Package name: com.google.android.apps.reader
+App name: Google Reader
+Version name: 1.1.8
+Version code: 1005
+Code size: 3518464
+First install time: 07/26/2012 3:46:13 pm
+Last update time: 07/26/2012 3:46:13 pm
+------------------------------
+Package name: com.google.android.apps.plus
+App name: Google+
+Version name: 3.1.1.32879387
+Version code: 311328793
+Code size: 28815360
+First install time: 07/26/2012 3:45:02 pm
+Last update time: 08/16/2012 2:30:31 pm
+------------------------------
+Package name: com.picsart.studio
+App name: PicsArt
+Version name: 2.9.0
+Version code: 35
+Code size: 5427200
+First install time: 09/04/2012 3:57:10 am
+Last update time: 09/04/2012 3:57:10 am
+------------------------------
+Package name: com.android.vending
+App name: Google Play Store
+Version name: 3.8.17
+Version code: 8014017
+Code size: 9838592
+First install time: 11/18/2011 7:14:34 am
+Last update time: 09/01/2012 3:47:10 am
+------------------------------
+Package name: com.rechild.advancedtaskkiller
+App name: Advanced Task Killer Free
+Version name: 1.9.7B92
+Version code: 92
+Code size: 245760
+First install time: 09/04/2012 3:57:25 am
+Last update time: 09/04/2012 3:57:25 am
+------------------------------
+Package name: com.google.android.apps.magazines
+App name: Google Play Magazines
+Version name: 1.0.2
+Version code: 122361040
+Code size: 11255808
+First install time: 07/26/2012 3:47:32 pm
+Last update time: 08/23/2012 8:17:26 pm
+------------------------------
+Package name: com.spotify.mobile.android.ui
+App name: Spotify
+Version name: 0.5.2.87
+Version code: 50200087
+Code size: 6709248
+First install time: 08/02/2012 7:15:51 pm
+Last update time: 08/02/2012 7:15:51 pm
+------------------------------
+Package name: com.mog.android
+App name: MOG
+Version name: 1.2.86
+Version code: 155
+Code size: 4603904
+First install time: 09/04/2012 3:58:03 am
+Last update time: 09/04/2012 3:58:03 am
+------------------------------
+Package name: com.zynga.scramble
+App name: Scramble Free
+Version name: 4.73
+Version code: 473
+Code size: 21651456
+First install time: 09/04/2012 3:59:38 am
+Last update time: 09/04/2012 3:59:38 am
+------------------------------
+Package name: com.sgiggle.production
+App name: Tango
+Version name: 2.1.27247
+Version code: 37
+Code size: 34062336
+First install time: 09/04/2012 3:43:40 am
+Last update time: 09/04/2012 3:43:40 am
+------------------------------
+Package name: com.cypressworks.changelogviewer
+App name: Changelog Droid
+Version name: 3.1.1c
+Version code: 82
+Code size: 4313088
+First install time: 08/02/2012 7:47:16 pm
+Last update time: 08/02/2012 7:47:16 pm
+------------------------------
+Package name: com.evernote.widget
+App name: Evernote Widget
+Version name: 2.0.3
+Version code: 2030
+Code size: 544768
+First install time: 08/04/2012 10:04:39 pm
+Last update time: 08/30/2012 2:49:30 pm
+------------------------------
+Package name: com.clearchannel.iheartradio.controller
+App name: iHeartRadio
+Version name: 4.3.0
+Version code: 515
+Code size: 8093696
+First install time: 09/04/2012 3:45:42 am
+Last update time: 09/04/2012 3:45:42 am
+------------------------------
+Package name: com.google.android.apps.giant
+App name: Analytics
+Version name: 1.1.4
+Version code: 29
+Code size: 2629632
+First install time: 07/26/2012 3:47:58 pm
+Last update time: 07/26/2012 3:47:58 pm
+------------------------------
+Package name: com.samteladze.delta.smartstat
+App name: SmartStatistics
+Version name: 1.0
+Version code: 1
+Code size: 53248
+First install time: 08/30/2012 4:41:48 am
+Last update time: 08/30/2012 5:56:46 am
+------------------------------
+Package name: net.zedge.android
+App name: Zedge
+Version name: 3.2.1
+Version code: 30201
+Code size: 3620864
+First install time: 09/04/2012 3:51:00 am
+Last update time: 09/04/2012 3:51:00 am
+------------------------------
+Package name: com.magmamobile.game.HiddenObject
+App name: Hidden Object
+Version name: 1.0.2
+Version code: 3
+Code size: 16134144
+First install time: 09/04/2012 3:53:38 am
+Last update time: 09/04/2012 3:53:38 am
+------------------------------
+Package name: com.google.android.apps.currents
+App name: Currents
+Version name: 1.5.1
+Version code: 121741107
+Code size: 10731520
+First install time: 07/26/2012 3:47:05 pm
+Last update time: 07/26/2012 3:47:05 pm
+------------------------------
+Package name: com.funzio.crimecity
+App name: Crime City
+Version name: 2.2.4
+Version code: 65
+Code size: 29208576
+First install time: 09/04/2012 3:54:17 am
+Last update time: 09/04/2012 3:54:17 am
+------------------------------
+Package name: com.xtralogic.android.logcollector
+App name: Log Collector
+Version name: 1.1.0
+Version code: 100
+Code size: 32768
+First install time: 08/02/2012 9:03:55 pm
+Last update time: 08/02/2012 9:03:55 pm
+------------------------------
+Package name: com.yahoo.mobile.client.android.mail
+App name: Mail
+Version name: 1.4.5
+Version code: 12736
+Code size: 6017024
+First install time: 09/04/2012 3:54:32 am
+Last update time: 09/04/2012 3:54:32 am
+------------------------------
+Package name: com.unrealmojo.imicex
+App name: iMicexRts
+Version name: 2.3.0
+Version code: 20120820
+Code size: 4624384
+First install time: 08/02/2012 7:19:59 pm
+Last update time: 08/23/2012 8:17:05 pm
+------------------------------
+Package name: com.vzw.hss.myverizon
+App name: My Verizon Mobile
+Version name: 10.0.332
+Version code: 23
+Code size: 831488
+First install time: 11/18/2011 6:11:06 am
+Last update time: 07/18/2012 1:32:56 pm
+------------------------------
+Package name: com.droidhen.defender2
+App name: Defender II
+Version name: 1.2.7
+Version code: 32
+Code size: 10002432
+First install time: 04/19/2012 5:26:30 pm
+Last update time: 09/01/2012 3:10:40 am
+------------------------------
+Package name: com.dropbox.android
+App name: Dropbox
+Version name: 2.1.10
+Version code: 211000
+Code size: 4734976
+First install time: 09/04/2012 3:55:25 am
+Last update time: 09/04/2012 3:55:25 am
+------------------------------
+Package name: com.netflix.mediaclient
+App name: Netflix
+Version name: 1.8.1 build 573
+Version code: 573
+Code size: 27881472
+First install time: 09/04/2012 3:56:28 am
+Last update time: 09/04/2012 3:56:28 am
+------------------------------
+Package name: com.google.android.music
+App name: Google Play Music
+Version name: 4.3.609.436083
+Version code: 609
+Code size: 8421376
+First install time: 04/22/2012 2:19:58 pm
+Last update time: 08/22/2012 8:04:52 pm
+------------------------------
+Package name: com.adobe.flashplayer
+App name: Adobe Flash Player 11.1
+Version name: 11.1.111.10
+Version code: 111111010
+Code size: 13471744
+First install time: 11/18/2011 7:14:34 am
+Last update time: 07/18/2012 1:32:41 pm
+------------------------------
+Package name: com.google.android.apps.unveil
+App name: Goggles
+Version name: 1.9
+Version code: 199
+Code size: 7319552
+First install time: 08/02/2012 7:27:56 pm
+Last update time: 08/22/2012 8:10:26 pm
+------------------------------
+Package name: air.com.freshplanet.games.WaM
+App name: SongPop Free
+Version name: 1.3.49
+Version code: 1003049
+Code size: 38273024
+First install time: 09/04/2012 3:34:47 am
+Last update time: 09/04/2012 3:34:47 am
+------------------------------
+Package name: com.samteladze.delta.statistics
+App name: DeltaStatistics
+Version name: 0.1.2
+Version code: 2
+Code size: 65536
+First install time: 09/01/2012 8:59:34 am
+Last update time: 09/05/2012 12:45:40 am
+------------------------------
+Package name: com.anydo
+App name: Any.DO
+Version name: 2.18
+Version code: 44
+Code size: 11927552
+First install time: 08/02/2012 7:22:07 pm
+Last update time: 09/01/2012 11:52:45 am
+------------------------------
+Package name: com.imangi.templerun
+App name: Temple Run
+Version name: 1.0.7
+Version code: 10
+Code size: 25804800
+First install time: 09/04/2012 3:28:05 am
+Last update time: 09/04/2012 3:28:05 am
+------------------------------
+Package name: com.google.android.apps.authenticator2
+App name: Authenticator
+Version name: 2.24
+Version code: 24
+Code size: 897024
+First install time: 07/26/2012 3:49:22 pm
+Last update time: 07/26/2012 3:49:22 pm
+------------------------------
+Package name: com.lookout
+App name: Lookout
+Version name: 7.18.1-78d79aa
+Version code: 71810
+Code size: 8740864
+First install time: 09/04/2012 3:58:26 am
+Last update time: 09/04/2012 3:58:26 am
+------------------------------
+Package name: com.ruanshaomin.game
+App name: Unblock Car
+Version name: 1.1
+Version code: 2
+Code size: 815104
+First install time: 09/04/2012 3:35:58 am
+Last update time: 09/04/2012 3:35:58 am
+------------------------------
+Package name: com.google.android.apps.books
+App name: Google Play Books
+Version name: 2.5.82
+Version code: 2582
+Code size: 9842688
+First install time: 11/18/2011 7:14:33 am
+Last update time: 07/18/2012 1:36:37 pm
+------------------------------
+Package name: com.rovio.angrybirds
+App name: Angry Birds
+Version name: 2.2.0
+Version code: 2200
+Code size: 25395200
+First install time: 09/04/2012 3:45:09 am
+Last update time: 09/04/2012 3:45:09 am
+------------------------------
+Package name: com.cb.volumePlus
+App name: Volume Control+
+Version name: 1.44
+Version code: 19
+Code size: 1028096
+First install time: 07/26/2012 10:55:12 am
+Last update time: 07/26/2012 10:55:12 am
+------------------------------
+Package name: com.test
+App name: HellowWorld
+Version name: 1.0
+Version code: 1
+Code size: 49152
+First install time: 04/23/2012 2:58:50 am
+Last update time: 04/23/2012 2:58:50 am
+------------------------------
+Package name: com.google.android.apps.finance
+App name: Finance
+Version name: 2.2.6
+Version code: 31
+Code size: 757760
+First install time: 07/26/2012 3:46:22 pm
+Last update time: 07/26/2012 3:46:22 pm
+------------------------------
+Package name: com.rebelvox.voxer
+App name: Voxer
+Version name: 0.9.9.0071
+Version code: 29
+Code size: 6537216
+First install time: 09/04/2012 3:49:38 am
+Last update time: 09/04/2012 3:49:38 am
+------------------------------
+Package name: com.shazam.android
+App name: Shazam
+Version name: 3.10.1-BB76101
+Version code: 76101
+Code size: 9457664
+First install time: 08/02/2012 9:18:20 pm
+Last update time: 08/28/2012 7:27:09 pm
+------------------------------
+Package name: com.omgpop.dstfree
+App name: Draw Free
+Version name: 1.8.20
+Version code: 1008020
+Code size: 21106688
+First install time: 09/04/2012 3:50:16 am
+Last update time: 09/04/2012 3:50:16 am
+------------------------------
+Package name: com.slacker.radio
+App name: Slacker Radio
+Version name: 3.2.2047
+Version code: 9578
+Code size: 6770688
+First install time: 11/18/2011 6:11:06 am
+Last update time: 07/18/2012 1:35:05 pm
+------------------------------
+Package name: com.whatsapp
+App name: WhatsApp
+Version name: 2.8.1504
+Version code: 31504
+Code size: 9101312
+First install time: 09/04/2012 3:50:44 am
+Last update time: 09/04/2012 3:50:44 am
+------------------------------
+Package name: com.samteladze.test
+App name: Test
+Version name: 1.0
+Version code: 1
+Code size: 53248
+First install time: 09/04/2012 6:02:04 am
+Last update time: 09/04/2012 6:02:04 am
+------------------------------
+Package name: com.google.android.stardroid
+App name: Google Sky Map
+Version name: 1.6.4
+Version code: 1112
+Code size: 2797568
+First install time: 09/04/2012 3:51:58 am
+Last update time: 09/04/2012 3:51:58 am
+------------------------------
+Package name: com.twitter.android
+App name: Twitter
+Version name: 3.3.1
+Version code: 169
+Code size: 3833856
+First install time: 09/04/2012 3:52:14 am
+Last update time: 09/04/2012 3:52:14 am
+------------------------------
+Package name: com.skype.raider
+App name: Skype
+Version name: 2.9.0.315
+Version code: 34144571
+Code size: 17788928
+First install time: 04/23/2012 12:42:35 pm
+Last update time: 08/31/2012 2:58:21 am
+------------------------------
+Package name: com.rexapps.blackwhip
+App name: Black Whip
+Version name: 2.3
+Version code: 26
+Code size: 1634304
+First install time: 04/29/2012 12:57:56 pm
+Last update time: 04/29/2012 12:57:56 pm
+------------------------------
+Package name: com.facebook.orca
+App name: Messenger
+Version name: 1.9.004-release
+Version code: 41396
+Code size: 9637888
+First install time: 07/26/2012 3:51:47 pm
+Last update time: 08/28/2012 7:26:44 pm
+------------------------------
+Package name: com.tmobile.moreforme
+App name: More for Me
+Version name: 3.0.16
+Version code: 16
+Code size: 1626112
+First install time: 09/04/2012 3:55:37 am
+Last update time: 09/04/2012 3:55:37 am
+------------------------------
+Package name: com.google.android.gm
+App name: Gmail
+Version name: 2.3.6
+Version code: 176
+Code size: 3506176
+First install time: 11/18/2011 7:14:33 am
+Last update time: 04/18/2012 6:48:06 pm
+------------------------------
+Package name: com.blockbuster.htc.app
+App name: Blockbuster
+Version name: 2.6.12
+Version code: 6012
+Code size: 5169152
+First install time: 11/18/2011 6:11:06 am
+Last update time: 07/26/2012 3:44:10 pm
+------------------------------
+Package name: com.google.android.youtube
+App name: YouTube
+Version name: 2.5.16
+Version code: 2516
+Code size: 6635520
+First install time: 11/18/2011 7:14:34 am
+Last update time: 07/25/2012 7:11:40 pm
+------------------------------
+Package name: com.metago.astro
+App name: ASTRO
+Version name: ASTRO_3.1.409.std
+Version code: 409
+Code size: 4853760
+First install time: 04/18/2012 6:58:53 pm
+Last update time: 09/01/2012 3:48:14 am
+------------------------------
+Package name: com.pinterest
+App name: Pinterest
+Version name: 1.0.3
+Version code: 5
+Code size: 6782976
+First install time: 09/04/2012 3:35:19 am
+Last update time: 09/04/2012 3:35:19 am
+------------------------------
+Package name: com.google.android.apps.blogger
+App name: Blogger
+Version name: 1.0.7
+Version code: 8
+Code size: 1458176
+First install time: 07/22/2012 10:44:02 am
+Last update time: 07/22/2012 10:44:02 am
+------------------------------
+Package name: com.fd.httpd
+App name: HTC Sync
+Version name: 900
+Version code: 900
+Code size: 1253376
+First install time: 04/23/2012 2:53:49 am
+Last update time: 09/04/2012 8:45:46 pm
+------------------------------

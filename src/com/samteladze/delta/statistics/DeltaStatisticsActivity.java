@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.samteladze.delta.statistics.Utils.*;
+import com.samteladze.delta.statistics.DataModel.*;
+
 public class DeltaStatisticsActivity extends Activity 
 {
 	private static Context _context;
@@ -15,16 +18,16 @@ public class DeltaStatisticsActivity extends Activity
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
+        setContentView(R.layout.main);       
         DeltaStatisticsActivity._context = getApplicationContext();
+        
         FileManager fileManager = new FileManager(_context);
         CommunicationManager communicationManager = new CommunicationManager(_context);
         
-        InstalledAppsStatisticsProvider installedAppsStatisticsProvider = new InstalledAppsStatisticsProvider(_context);
-        String installedAppsStatistics = installedAppsStatisticsProvider.GetStatistics();
+        AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(_context);
+        appStatisticsProvider.CollectStatistics();
         
-        fileManager.SaveStatistics(installedAppsStatistics);
+        fileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly));
         Intent sendIntent = communicationManager.CreatEmailStatisticsIntent();      
         SendStatisticsToMail(sendIntent);  
     }    
@@ -35,9 +38,9 @@ public class DeltaStatisticsActivity extends Activity
     	{
     		startActivity(Intent.createChooser(sendIntent, "Send e-mail..."));
         } 
-    	catch (android.content.ActivityNotFoundException exception) 
+    	catch (Exception e) 
     	{
-    		exception.printStackTrace(System.err);
+    		e.printStackTrace(System.err);
     		
             Toast.makeText(_context, "No e-mail clients installed", Toast.LENGTH_SHORT).show();
     	}

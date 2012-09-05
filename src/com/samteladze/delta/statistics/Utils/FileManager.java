@@ -1,9 +1,10 @@
-package com.samteladze.delta.statistics;
+package com.samteladze.delta.statistics.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import com.samteladze.delta.statistics.R;
 import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
