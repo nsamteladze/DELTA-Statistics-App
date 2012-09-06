@@ -3,6 +3,7 @@ package com.samteladze.delta.statistics;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -25,7 +26,7 @@ public class AppStatisticsProvider
 		_context = context;
 		_statistics = new ArrayList<AppStatistics>();
 	}
-	
+		
 	public void CollectStatistics()
 	{
 		// Get PackageManager and list of all the installed applications
@@ -33,15 +34,26 @@ public class AppStatisticsProvider
         List<ApplicationInfo> installedApplications = 
         		packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         
+        final Semaphore countCodeSizeSemaphore = new Semaphore(1, true);
+        
         for (ApplicationInfo appInfo : installedApplications)
         {        	
         	if (!IsSystemApp(appInfo) || IsUpdatedSystemApp(appInfo))
         	{
+        		try
+				{
+					countCodeSizeSemaphore.acquire();
+				} 
+        		catch (InterruptedException e)
+				{
+					e.printStackTrace(System.err);
+				}
+        		
         		final AppStatistics AppStatistics = new AppStatistics();
         		
         		AppStatistics.packageName = appInfo.packageName;    		
         		AppStatistics.appName = appInfo.loadLabel(packageManager).toString();
-        		
+        		       		
         		try
         		{       		
 	        		Method getPackageSizeInfo = packageManager.getClass().getMethod(
@@ -54,6 +66,7 @@ public class AppStatisticsProvider
 	    		                    throws RemoteException 
 	    	                    {
 	    		        			AppStatistics.codeSize = pStats.codeSize;
+	    		        			countCodeSizeSemaphore.release();
 	    		                }
 	    		            }); 
         		}
