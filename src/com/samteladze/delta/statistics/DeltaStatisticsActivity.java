@@ -28,8 +28,7 @@ public class DeltaStatisticsActivity extends Activity
         appStatisticsProvider.CollectStatistics();
         
         fileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly));
-        Intent sendIntent = communicationManager.CreatEmailStatisticsIntent();      
-        SendStatisticsToMail(sendIntent);  
+        communicationManager.SendStatisticsToServer(); 
     }    
     
     private void SendStatisticsToMail(Intent sendIntent)
