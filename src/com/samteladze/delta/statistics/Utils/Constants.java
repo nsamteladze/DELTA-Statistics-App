@@ -9,13 +9,7 @@ public class Constants
 	
 	public static final String EmptyStr = "";	
 	
-	public static final String DateFormat = "MM/dd/yyyy h:mm:ss aa";
-	
-	public static final String AbsoluteStatisticsFileName = "DeltaStatistics/Statistics/stat.txt";
-	
-	public static final String MailText = "Current statistics.";
-	public static final String MailSubject = "Delta Statistics";
-	public static final String MailAddress = "delta.statistics@gmail.com";
+	public static final String DateFormat = "MM/dd/yyyy h:mm:ss aa";	
 	
 	public static final String StatisticsPackageNameText = "Package name: ";
 	public static final String StatisticsAppNameText = "App name: ";

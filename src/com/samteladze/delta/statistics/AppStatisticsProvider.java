@@ -92,6 +92,8 @@ public class AppStatisticsProvider
         		_statistics.add(AppStatistics);
         	}        	
         } 
+        
+        FileManager.Log("AppStatisticsProvider | Statistics was collected.");
 	}
 	
 	public String GetStatistics(StatisticsFormat format)

@@ -9,58 +9,54 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.samteladze.delta.statistics.R;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
-import android.util.Log;
 
-public class CommunicationManager 
+public class CommunicationManager
 {
-	private Context _context;
+	private static final String SERVER_URL = "http://xdp-apps.org/stat-collector/collect";
+	private static final String MAIL_TEXT = "Current statistics.";
+	private static final String MAIL_SUBJECT = "Delta Statistics";
+	private static final String MAIL_ADDRESS = "delta.statistics@gmail.com";
 	
-	public CommunicationManager(Context context)
+	public static Intent CreatEmailStatisticsIntent()
 	{
-		this._context = context;
+		Uri statFileUri = Uri.fromFile(FileManager.GetStatisticsFile());
+
+		Intent sendIntent = new Intent(Intent.ACTION_SEND);
+		sendIntent.setType("text/plain");
+		sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { MAIL_ADDRESS });
+		sendIntent.putExtra(Intent.EXTRA_SUBJECT, MAIL_SUBJECT);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, MAIL_TEXT);
+		sendIntent.putExtra(Intent.EXTRA_STREAM, statFileUri);
+
+		return sendIntent;
 	}
-	
-	public Intent CreatEmailStatisticsIntent()
-    {
-    	Uri fileUri = null;
-    	File sdCard = Environment.getExternalStorageDirectory();
-    	File statDataFolder = new File(sdCard.getAbsolutePath() + "/" + _context.getString(R.string.StatFilePath));
-    	fileUri = Uri.fromFile(new File(statDataFolder.getAbsolutePath() + "/" + _context.getString(R.string.StatFileName)));
-    	
-    	Intent sendIntent = new Intent(Intent.ACTION_SEND);
-    	sendIntent.setType("text/plain");
-    	sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { Constants.MailAddress});
-    	sendIntent.putExtra(Intent.EXTRA_SUBJECT, Constants.MailSubject);
-    	sendIntent.putExtra(Intent.EXTRA_TEXT, Constants.MailText);
-    	sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
-    	
-    	return sendIntent;	
-    }
-	
-	public void SendStatisticsToServer()
+
+	public static void SendStatisticsToServer()
 	{
-		String url = "http://xdp-apps.org/stat-collector/collect";
-		File file = new File(Environment.getExternalStorageDirectory(), Constants.AbsoluteStatisticsFileName);
+		File fileToSend = FileManager.GetStatisticsFile();
 		
 		try
 		{
-		    HttpClient httpclient = new DefaultHttpClient();
-		    HttpPost httppost = new HttpPost(url);
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(SERVER_URL);
 
-		    InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
-		    reqEntity.setContentType("binary/octet-stream");
-		    reqEntity.setChunked(true); // Send in multiple parts if needed
-		    httppost.setEntity(reqEntity);
-		    HttpResponse response = httpclient.execute(httppost);
+			InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(fileToSend), -1);
+			reqEntity.setContentType("binary/octet-stream");
+			reqEntity.setChunked(true);
+			httppost.setEntity(reqEntity);
+
+			@SuppressWarnings("unused")
+			HttpResponse response = httpclient.execute(httppost);
+			
+			FileManager.Log("CommunicationManager | Statistics data was sent to the server.");
 		} 
-		catch (Exception e) 
+		catch (Exception e)
 		{
-		    e.printStackTrace(System.err);
+			e.printStackTrace(System.err);
+			
+			FileManager.Log("CommunicationManager | ERROR! Could not send statistics data to the server.");
 		}
 	}
 }

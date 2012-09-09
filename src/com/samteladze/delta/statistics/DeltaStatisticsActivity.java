@@ -1,16 +1,22 @@
 package com.samteladze.delta.statistics;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.widget.Toast;
 
 import com.samteladze.delta.statistics.Utils.*;
-import com.samteladze.delta.statistics.DataModel.*;
 
 public class DeltaStatisticsActivity extends Activity 
 {
+	// Time delay in AlarmManager before the first alarm is fired
+	public static final int ALARM_DELAY = 120000;
+	// Time between alarms in AlarmManager
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
 	private static Context _context;
 	
     /** Called when the activity is first created. */
@@ -21,17 +27,26 @@ public class DeltaStatisticsActivity extends Activity
         setContentView(R.layout.main);       
         DeltaStatisticsActivity._context = getApplicationContext();
         
-        FileManager fileManager = new FileManager(_context);
-        CommunicationManager communicationManager = new CommunicationManager(_context);
+        CreateRequiredFolders();
         
-        AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(_context);
-        appStatisticsProvider.CollectStatistics();
-        
-        fileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly));
-        communicationManager.SendStatisticsToServer(); 
+	    // Get AlarmManager
+ 		AlarmManager alarmManager = (AlarmManager) _context.getSystemService(Context.ALARM_SERVICE);
+ 		
+ 		// Create an Intent to start OnAlarmReceiver
+ 		Intent alarmIntent = new Intent(_context, OnAlarmReceiver.class);
+ 		// Create a PendingIntent from alarmIntent
+ 		PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(_context, 0, alarmIntent, 0);
+ 		
+ 		// Set repeating alarm that will invoke OnAlarmReceiver
+ 		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
+ 								  SystemClock.elapsedRealtime() + ALARM_DELAY, 
+ 								 ALARM_PERIOD, alarmPendingIntent);        
+ 		
+ 		FileManager.Log("DeltaStatisticsActivity | Alarm was set.");
     }    
     
-    private void SendStatisticsToMail(Intent sendIntent)
+    @SuppressWarnings("unused")
+	private void SendStatisticsToMail(Intent sendIntent)
     {
     	try 
     	{
@@ -43,5 +58,15 @@ public class DeltaStatisticsActivity extends Activity
     		
             Toast.makeText(_context, "No e-mail clients installed", Toast.LENGTH_SHORT).show();
     	}
+    }
+    
+    private void CreateRequiredFolders()
+    {
+        if (!FileManager.HasFolderStructure())
+        {
+        	FileManager.CreateFolderStructure();
+        	
+        	FileManager.Log("DeltaStatisticsActivity | Folders structure was created.");
+        }
     }
 }

@@ -1,82 +1,91 @@
 package com.samteladze.delta.statistics.Utils;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
+import java.io.FileWriter;
+import java.util.Date;
 
-import com.samteladze.delta.statistics.R;
-import android.content.Context;
 import android.os.Environment;
-import android.widget.Toast;
 
-public class FileManager 
+public class FileManager
 {
-	private Context _context;
-	
-	public FileManager(Context context)
+	/*
+	 * TODO Use local constants instead of retrieving information from
+	 * Strings.xml resources file
+	 */
+
+	public static final String	STAT_FILE_PATH	= "DeltaStatistics/Statistics/stat.txt";
+	private static final String	LOG_FILE_PATH	= "DeltaStatistics/log.txt";
+
+	public static void SaveStatistics(String statistics)
 	{
-		this._context = context;
+		File statFile = new File(Environment.getExternalStorageDirectory(), STAT_FILE_PATH);
+
+		try
+		{
+			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, false));
+
+			out.write(statistics);
+
+			out.close();
+			
+			Log("FileManager | Statistics was saved.");
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace(System.err);
+			
+			Log("FileManager | ERROR! Could not save statistics.");
+		}
 	}
-	public void SaveStatistics(String statistics)
+
+	public static boolean HasFolderStructure()
 	{
-		Toast.makeText(_context, "Saving statistics...", Toast.LENGTH_SHORT).show();
-		
-		FileOutputStream fileOutputStream = null;
-    	OutputStreamWriter outputStreamWriter = null;
-    	
-    	if (!HasFolderStructure())
-    	{
-    		CreateFolderStructure();
-    	}
-    	
-    	File sdCard = Environment.getExternalStorageDirectory();
-    	File statDataFolder = new File(sdCard.getAbsolutePath() + "/" + _context.getString(R.string.StatFilePath));
-    
-    	try
-    	{
-    		fileOutputStream = new FileOutputStream(new File(statDataFolder.getAbsolutePath() + "/" + _context.getString(R.string.StatFileName)));
-    		outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-    		
-    		outputStreamWriter.write(statistics);
-    		
-    		outputStreamWriter.close();
-    		fileOutputStream.close();   		
-    	}
-    	catch (Exception exception)
-    	{
-    		exception.printStackTrace(System.err);
-    		
-    		Toast.makeText(_context, "Unable to save statistics", Toast.LENGTH_SHORT).show();
-    	}
+		File statDataFolder = new File(Environment.getExternalStorageDirectory(), STAT_FILE_PATH);
+
+		// Test statistics data folder
+		if (!statDataFolder.exists() || !statDataFolder.isDirectory())
+		{
+			return (false);
+		}
+
+		return (true);
+	}
+
+	public static void CreateFolderStructure()
+	{
+		File statDataFolder = new File(
+				Environment.getExternalStorageDirectory(), STAT_FILE_PATH);
+
+		if (!statDataFolder.exists())
+		{
+			statDataFolder.mkdirs();
+			/*
+			 * TODO Throw exception if the folder was not created
+			 */
+		}
+	}
+
+	public static void Log(String logStr)
+	{
+		File logFile = new File(Environment.getExternalStorageDirectory(), LOG_FILE_PATH);
+
+		try
+		{
+			BufferedWriter out = new BufferedWriter(new FileWriter(logFile, logFile.exists()));
+
+			out.write(new Date().toString() + " : " + logStr + Constants.LayoutNextLine);
+
+			out.close();
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace(System.err);
+		}
 	}
 	
-	private boolean HasFolderStructure()
-    {    	
-    	File sdCard = Environment.getExternalStorageDirectory();
-    	File statDataFolder = new File(sdCard.getAbsolutePath() + "/" + _context.getString(R.string.StatFilePath));
-    	
-    	// Test statistics data folder
-    	if (!statDataFolder.exists() || !statDataFolder.isDirectory())
-    	{
-    		return (false);
-    	}
-    	
-		return (true);    	
-    }
-    
-    private void CreateFolderStructure()
-    {
-    	Toast.makeText(_context, "Creating a folders structure... ", Toast.LENGTH_LONG).show();
-    	
-    	File sdCard	= Environment.getExternalStorageDirectory();
-    	File statDataFolder = new File(sdCard.getAbsolutePath() + "/" + _context.getString(R.string.StatFilePath));
-    	
-    	if (!statDataFolder.exists())
-    	{
-    		if (!statDataFolder.mkdirs())
-    		{
-    			Toast.makeText(_context, "Unable to create folders structure", Toast.LENGTH_SHORT).show();
-    		}
-    	}
-    }
+	public static File GetStatisticsFile()
+	{
+		return (new File(Environment.getExternalStorageDirectory(), STAT_FILE_PATH));
+	}
 }
