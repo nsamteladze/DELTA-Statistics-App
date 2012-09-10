@@ -19,4 +19,5 @@ public class Constants
 	public static final String StatisticsLastUpdateTimeText = "Last update time: ";
 	public static final String StatisticsCodeSizeText = "Code size: ";
 	public static final String StatisticsNumberOfApps = "Number of applications: ";
+	public static final String StatisticsDeviceID = "Device ID: ";
 }

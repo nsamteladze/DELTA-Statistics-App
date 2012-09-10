@@ -12,6 +12,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageStats;
 import android.os.RemoteException;
+import android.provider.Settings.Secure;
 
 import com.samteladze.delta.statistics.DataModel.*;
 import com.samteladze.delta.statistics.Utils.*;
@@ -100,6 +101,7 @@ public class AppStatisticsProvider
 	{
 		String statisticsStr = "";
 		
+		statisticsStr += GetDeviceID(format);
 		statisticsStr += GetNumberOfApps(format);
 		
 		for (AppStatistics appStatistics : _statistics)
@@ -127,6 +129,25 @@ public class AppStatisticsProvider
 		else if (format == StatisticsFormat.Machine)
 		{
 			generatedStr += _statistics.size() + Constants.LayoutNextLine;
+			generatedStr += Constants.LayoutEndSection;
+		}
+		
+		return generatedStr;
+	}
+	
+	private String GetDeviceID(StatisticsFormat format)
+	{
+		String generatedStr = "";
+		String deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);
+		
+		if (format == StatisticsFormat.UserFriendly)
+		{
+			generatedStr += Constants.StatisticsDeviceID + deviceID + Constants.LayoutNextLine;
+			generatedStr += Constants.LayoutSeparator;
+		}
+		else if (format == StatisticsFormat.Machine)
+		{
+			generatedStr += deviceID + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutEndSection;
 		}
 		
