@@ -94,7 +94,7 @@ public class AppStatisticsProvider
         	}        	
         } 
         
-        FileManager.Log("AppStatisticsProvider | Statistics was collected.");
+        FileManager.Log("AppStatisticsProvider", "Statistics was collected.");
 	}
 	
 	public String GetStatistics(StatisticsFormat format)

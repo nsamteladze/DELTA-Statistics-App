@@ -29,13 +29,13 @@ public class FileManager
 
 			out.close();
 			
-			Log("FileManager | Statistics was saved.");
+			Log("FileManager", "Statistics was saved.");
 		} 
 		catch (Exception e)
 		{
 			e.printStackTrace(System.err);
 			
-			Log("FileManager | ERROR! Could not save statistics.");
+			Log("FileManager", "ERROR! Could not save statistics.");
 		}
 	}
 
@@ -66,7 +66,7 @@ public class FileManager
 		}
 	}
 
-	public static void Log(String logStr)
+	public static void Log(String tag, String logMessage)
 	{
 		File logFile = new File(Environment.getExternalStorageDirectory(), LOG_FILE_PATH);
 
@@ -74,7 +74,7 @@ public class FileManager
 		{
 			BufferedWriter out = new BufferedWriter(new FileWriter(logFile, logFile.exists()));
 
-			out.write(new Date().toString() + " : " + logStr + Constants.LayoutNextLine);
+			out.write(new Date().toString() + " | " + tag + " : " + logMessage + Constants.LayoutNextLine);
 
 			out.close();
 		} 

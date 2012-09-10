@@ -15,6 +15,6 @@ public class OnAlarmReceiver extends BroadcastReceiver
 	{
 		WakefulIntentService.sendWakefulWork(context, AppStatisticsService.class);
 		
-		FileManager.Log("OnAlarmReceiver | Alarm was received. Starting AppStatisticsService.");
+		FileManager.Log("OnAlarmReceiver", "Alarm was received. Starting AppStatisticsService.");
 	}
 }

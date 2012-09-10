@@ -50,13 +50,13 @@ public class CommunicationManager
 			@SuppressWarnings("unused")
 			HttpResponse response = httpclient.execute(httppost);
 			
-			FileManager.Log("CommunicationManager | Statistics data was sent to the server.");
+			FileManager.Log("CommunicationManager", "Statistics data was sent to the server.");
 		} 
 		catch (Exception e)
 		{
 			e.printStackTrace(System.err);
 			
-			FileManager.Log("CommunicationManager | ERROR! Could not send statistics data to the server.");
+			FileManager.Log("CommunicationManager", "ERROR! Could not send statistics data to the server.");
 		}
 	}
 }

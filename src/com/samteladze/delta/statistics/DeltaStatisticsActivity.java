@@ -42,7 +42,7 @@ public class DeltaStatisticsActivity extends Activity
  								  SystemClock.elapsedRealtime() + ALARM_DELAY, 
  								 ALARM_PERIOD, alarmPendingIntent);        
  		
- 		FileManager.Log("DeltaStatisticsActivity | Alarm was set.");
+ 		FileManager.Log("DeltaStatisticsActivity", "Alarm was set.");
     }    
     
     @SuppressWarnings("unused")
@@ -66,7 +66,7 @@ public class DeltaStatisticsActivity extends Activity
         {
         	FileManager.CreateFolderStructure();
         	
-        	FileManager.Log("DeltaStatisticsActivity | Folders structure was created.");
+        	FileManager.Log("DeltaStatisticsActivity", "Folders structure was created.");
         }
     }
 }

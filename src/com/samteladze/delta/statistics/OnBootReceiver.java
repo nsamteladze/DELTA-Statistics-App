@@ -27,6 +27,6 @@ public class OnBootReceiver extends BroadcastReceiver
 								  SystemClock.elapsedRealtime() + DeltaStatisticsActivity.ALARM_DELAY, 
 								  DeltaStatisticsActivity.ALARM_PERIOD, alarmPendingIntent);
 		
-		FileManager.Log("OnBootReceiver | Alarm was set.");
+		FileManager.Log("OnBootReceiver", "Alarm was set.");
 	}
 }
