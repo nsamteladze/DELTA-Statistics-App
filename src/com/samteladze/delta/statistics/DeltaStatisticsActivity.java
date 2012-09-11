@@ -16,11 +16,11 @@ public class DeltaStatisticsActivity extends Activity
 	// Time delay in AlarmManager before the first alarm is fired
 	public static final int ALARM_DELAY = 120000;
 	// Time between alarms in AlarmManager
-	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_HOUR;
 	private static Context _context;
 	
     /** Called when the activity is first created. */
-    @Override
+    @Override 
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);

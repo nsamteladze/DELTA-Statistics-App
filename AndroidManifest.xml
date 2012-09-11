@@ -10,7 +10,8 @@
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@drawable/icon_round"
@@ -31,6 +32,11 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".OnAlarmReceiver" />
+        <receiver android:name=".OnConnectivityChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
         <service android:name=".AppStatisticsService" />
     </application>
