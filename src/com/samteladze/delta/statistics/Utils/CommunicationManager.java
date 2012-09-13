@@ -45,8 +45,8 @@ public class CommunicationManager
 			InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(fileToSend), -1);
 			reqEntity.setContentType("binary/octet-stream");
 			reqEntity.setChunked(true);
+			
 			httppost.setEntity(reqEntity);
-
 			@SuppressWarnings("unused")
 			HttpResponse response = httpclient.execute(httppost);
 			

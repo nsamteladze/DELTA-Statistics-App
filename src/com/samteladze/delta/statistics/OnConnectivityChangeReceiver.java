@@ -1,5 +1,7 @@
 package com.samteladze.delta.statistics;
 
+import java.util.Date;
+
 import com.samteladze.delta.statistics.DataModel.StatisticsFormat;
 import com.samteladze.delta.statistics.Utils.FileManager;
 
@@ -12,8 +14,12 @@ public class OnConnectivityChangeReceiver extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{	
+		/* TODO
+		 * Pass time stamp to the NetStatisticsProvider
+		 */
+				
 		NetStatisticsProvider netStatProvider = new NetStatisticsProvider(context.getApplicationContext());
-		netStatProvider.CollectStatistics();
+		netStatProvider.CollectStatistics(new Date());
 		
 		FileManager.SaveNetStatistics(netStatProvider.GetStatistics(StatisticsFormat.UserFriendly));
 	}
