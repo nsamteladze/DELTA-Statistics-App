@@ -14,12 +14,14 @@ public class FileManager
 	 * Strings.xml resources file
 	 */
 
-	public static final String	STAT_FILE_PATH	= "DeltaStatistics/Statistics/stat.txt";
+	public static final String	APP_STAT_FILE_PATH	= "DeltaStatistics/Statistics/AppStat.txt";
+	public static final String	NET_STAT_FILE_PATH	= "DeltaStatistics/Statistics/NetStat.txt";
 	private static final String	LOG_FILE_PATH	= "DeltaStatistics/log.txt";
+	private static final String STAT_FOLDER_PATH = "DeltaStatistics/Statistics";
 
-	public static void SaveStatistics(String statistics)
+	public static void SaveAppStatistics(String statistics)
 	{
-		File statFile = new File(Environment.getExternalStorageDirectory(), STAT_FILE_PATH);
+		File statFile = new File(Environment.getExternalStorageDirectory(), APP_STAT_FILE_PATH);
 
 		try
 		{
@@ -29,19 +31,60 @@ public class FileManager
 
 			out.close();
 			
-			Log("FileManager", "Statistics was saved.");
+			Log("FileManager", "Applications statistics was saved.");
 		} 
 		catch (Exception e)
 		{
 			e.printStackTrace(System.err);
 			
-			Log("FileManager", "ERROR! Could not save statistics.");
+			Log("FileManager", "ERROR! Could not save applications statistics.");
+		}
+	}
+	
+	public static void SaveNetStatistics(String statistics)
+	{
+		File statFile = new File(Environment.getExternalStorageDirectory(), NET_STAT_FILE_PATH);
+
+		try
+		{
+			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, statFile.exists()));
+
+			out.write(statistics);
+
+			out.close();
+			
+			Log(FileManager.class.getSimpleName(), "Network statistics was saved.");
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace(System.err);
+			
+			Log(FileManager.class.getSimpleName(), "ERROR! Could not save network statistics.");
+		}
+	}
+	
+	public static void CleanNetStatistics()
+	{
+		File statFile = new File(Environment.getExternalStorageDirectory(), NET_STAT_FILE_PATH);
+		
+		try
+		{
+			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, false));
+			out.close();
+			
+			Log(FileManager.class.getSimpleName(), "Network statistics was cleaned.");
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace(System.err);
+			
+			Log(FileManager.class.getSimpleName(), "ERROR! Could not clean network statistics.");
 		}
 	}
 
 	public static boolean HasFolderStructure()
 	{
-		File statDataFolder = new File(Environment.getExternalStorageDirectory(), STAT_FILE_PATH);
+		File statDataFolder = new File(Environment.getExternalStorageDirectory(), STAT_FOLDER_PATH);
 
 		// Test statistics data folder
 		if (!statDataFolder.exists() || !statDataFolder.isDirectory())
@@ -55,7 +98,7 @@ public class FileManager
 	public static void CreateFolderStructure()
 	{
 		File statDataFolder = new File(
-				Environment.getExternalStorageDirectory(), STAT_FILE_PATH);
+				Environment.getExternalStorageDirectory(), STAT_FOLDER_PATH);
 
 		if (!statDataFolder.exists())
 		{
@@ -63,6 +106,9 @@ public class FileManager
 			/*
 			 * TODO Throw exception if the folder was not created
 			 */
+			
+        	
+        	FileManager.Log(FileManager.class.getSimpleName(), "Folders structure was created.");
 		}
 	}
 
@@ -84,8 +130,13 @@ public class FileManager
 		}
 	}
 	
-	public static File GetStatisticsFile()
+	public static File GetAppStatisticsFile()
 	{
-		return (new File(Environment.getExternalStorageDirectory(), STAT_FILE_PATH));
+		return (new File(Environment.getExternalStorageDirectory(), APP_STAT_FILE_PATH));
+	}
+	
+	public static File GetNetStatisticsFile()
+	{
+		return (new File(Environment.getExternalStorageDirectory(), NET_STAT_FILE_PATH));
 	}
 }

@@ -20,4 +20,21 @@ public class Constants
 	public static final String StatisticsCodeSizeText = "Code size: ";
 	public static final String StatisticsNumberOfApps = "Number of applications: ";
 	public static final String StatisticsDeviceID = "Device ID: ";
+	
+	public static final String StatisticsActiveNetType = "Active network type: ";
+	public static final String StatisticsActiveNetSubtype = "Active network subtype: ";
+	public static final String StatisticsActiveNetCoarseState = "Active network coarse-grained state: ";
+	public static final String StatisticsActiveNetFineState = "Active network fine-grained state: ";
+	public static final String StatisticsWifiNetType = "Network type: ";
+	public static final String StatisticsWifiNetSubtype = "Wi-Fi network subtype: ";
+	public static final String StatisticsWifiNetCoarseState = "Wi-Fi network coarse-grained state: ";
+	public static final String StatisticsWifiNetFineState = "Wi-Fi network fine-grained state: ";
+	public static final String StatisticsMobileNetType = "Network type: ";
+	public static final String StatisticsMobileNetSubtype = "Mobile network subtype: ";
+	public static final String StatisticsMobileNetCoarseState = "Mobile network coarse-grained state: ";
+	public static final String StatisticsMobileNetFineState = "Mobile network fine-grained state: ";
+	public static final String StatisticsNoActiveNet = "No active network";
+	public static final String StatisticsNoWifiNet = "No Wi-Fi network";
+	public static final String StatisticsNoMobileNet = "No Mobile network";
+	public static final String StatisticsNone = "none";
 }

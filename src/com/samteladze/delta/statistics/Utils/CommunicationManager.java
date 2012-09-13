@@ -21,7 +21,7 @@ public class CommunicationManager
 	
 	public static Intent CreatEmailStatisticsIntent()
 	{
-		Uri statFileUri = Uri.fromFile(FileManager.GetStatisticsFile());
+		Uri statFileUri = Uri.fromFile(FileManager.GetAppStatisticsFile());
 
 		Intent sendIntent = new Intent(Intent.ACTION_SEND);
 		sendIntent.setType("text/plain");
@@ -35,7 +35,7 @@ public class CommunicationManager
 
 	public static void SendStatisticsToServer()
 	{
-		File fileToSend = FileManager.GetStatisticsFile();
+		File fileToSend = FileManager.GetAppStatisticsFile();
 		
 		try
 		{
@@ -57,6 +57,10 @@ public class CommunicationManager
 			e.printStackTrace(System.err);
 			
 			FileManager.Log("CommunicationManager", "ERROR! Could not send statistics data to the server.");
+			
+			/* TODO
+			 * Set another alarm to send statistics later
+			 */
 		}
 	}
 }

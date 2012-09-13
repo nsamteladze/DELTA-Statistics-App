@@ -65,8 +65,6 @@ public class DeltaStatisticsActivity extends Activity
         if (!FileManager.HasFolderStructure())
         {
         	FileManager.CreateFolderStructure();
-        	
-        	FileManager.Log("DeltaStatisticsActivity", "Folders structure was created.");
         }
     }
 }

@@ -21,7 +21,7 @@ public class AppStatisticsService extends WakefulIntentService
         AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(this.getApplicationContext());
         appStatisticsProvider.CollectStatistics(); 
         
-        FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly));
+        FileManager.SaveAppStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly));
         CommunicationManager.SendStatisticsToServer();     		
 	}
 }
