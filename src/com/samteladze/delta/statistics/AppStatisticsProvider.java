@@ -73,7 +73,7 @@ public class AppStatisticsProvider
         		}
         		catch (Exception e)
         		{
-        			e.printStackTrace(System.err);
+        			e.printStackTrace(FileManager.GetLogPrintStream());
         		}
         		
         		try 
@@ -87,14 +87,14 @@ public class AppStatisticsProvider
 				} 
         		catch (Exception exception) 
         		{
-        			exception.printStackTrace(System.err);
+        			exception.printStackTrace(FileManager.GetLogPrintStream());
 				}   
         		
         		_statistics.add(AppStatistics);
         	}        	
         } 
         
-        FileManager.Log("AppStatisticsProvider", "Statistics was collected.");
+        FileManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected.");
 	}
 	
 	public String GetStatistics(StatisticsFormat format)

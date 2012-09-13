@@ -42,7 +42,7 @@ public class DeltaStatisticsActivity extends Activity
  								  SystemClock.elapsedRealtime() + ALARM_DELAY, 
  								 ALARM_PERIOD, alarmPendingIntent);        
  		
- 		FileManager.Log("DeltaStatisticsActivity", "Alarm was set.");
+ 		FileManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm was set.");
     }    
     
     @SuppressWarnings("unused")
@@ -54,9 +54,9 @@ public class DeltaStatisticsActivity extends Activity
         } 
     	catch (Exception e) 
     	{
-    		e.printStackTrace(System.err);
+    		e.printStackTrace(FileManager.GetLogPrintStream());
     		
-            Toast.makeText(_context, "No e-mail clients installed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(_context, "No e-mail clients installed", Toast.LENGTH_LONG).show();
     	}
     }
     

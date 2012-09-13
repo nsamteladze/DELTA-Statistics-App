@@ -1,8 +1,4 @@
 
-/* TODO
- * Add time stamp to the collected statistics
- */
-
 package com.samteladze.delta.statistics;
 
 import java.util.Date;

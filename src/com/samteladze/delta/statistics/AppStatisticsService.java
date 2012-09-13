@@ -16,7 +16,7 @@ public class AppStatisticsService extends WakefulIntentService
 	@Override
 	protected void doWakefulWork(Intent intent)
 	{
-		FileManager.Log("AppStatisticsService", "Starting the service.");
+		FileManager.Log(AppStatisticsService.class.getSimpleName(), "Starting the service.");
 		
         AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(this.getApplicationContext());
         appStatisticsProvider.CollectStatistics(); 

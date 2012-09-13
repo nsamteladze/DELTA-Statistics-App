@@ -13,11 +13,7 @@ public class OnConnectivityChangeReceiver extends BroadcastReceiver
 {
 	@Override
 	public void onReceive(Context context, Intent intent)
-	{	
-		/* TODO
-		 * Pass time stamp to the NetStatisticsProvider
-		 */
-				
+	{					
 		NetStatisticsProvider netStatProvider = new NetStatisticsProvider(context.getApplicationContext());
 		netStatProvider.CollectStatistics(new Date());
 		
