@@ -8,7 +8,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-
 import android.content.Intent;
 import android.net.Uri;
 
@@ -33,7 +32,7 @@ public class CommunicationManager
 		return sendIntent;
 	}
 
-	public static void SendStatisticsToServer()
+	public static boolean SendStatisticsToServer()
 	{
 		File fileToSend = FileManager.GetAppStatisticsFile();
 		
@@ -47,20 +46,21 @@ public class CommunicationManager
 			reqEntity.setChunked(true);
 			
 			httppost.setEntity(reqEntity);
+
 			@SuppressWarnings("unused")
 			HttpResponse response = httpclient.execute(httppost);
 			
 			FileManager.Log(CommunicationManager.class.getSimpleName(), "Statistics data was sent to the server.");
+			
+			return true;
 		} 
 		catch (Exception e)
 		{
 			e.printStackTrace(FileManager.GetLogPrintStream());
 			
 			FileManager.Log(CommunicationManager.class.getSimpleName(), "ERROR! Could not send statistics data to the server.");
-			
-			/* TODO
-			 * Set another alarm to send statistics later
-			 */
 		}
+		
+		return false;
 	}
 }

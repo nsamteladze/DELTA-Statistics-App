@@ -16,8 +16,10 @@ public class DeltaStatisticsActivity extends Activity
 	// Time delay in AlarmManager before the first alarm is fired
 	public static final int ALARM_DELAY = 120000;
 	// Time between alarms in AlarmManager
-	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_HOUR;
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_DAY;
 	private static Context _context;
+	// Unique request code for PendingIntent (used to distinguish intents)
+	private static final int INTENT_REQUEST_CODE = 0;
 	
     /** Called when the activity is first created. */
     @Override 
@@ -35,7 +37,7 @@ public class DeltaStatisticsActivity extends Activity
  		// Create an Intent to start OnAlarmReceiver
  		Intent alarmIntent = new Intent(_context, OnAlarmReceiver.class);
  		// Create a PendingIntent from alarmIntent
- 		PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(_context, 0, alarmIntent, 0);
+ 		PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(_context, INTENT_REQUEST_CODE, alarmIntent, 0);
  		
  		// Set repeating alarm that will invoke OnAlarmReceiver
  		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
