@@ -16,12 +16,14 @@ public class FileManager
 	public static final String USER_NET_STAT_FILE_PATH	= "DeltaStatistics/Statistics/UserNetStat.txt";
 	
 	private static final String STAT_FOLDER_PATH = "DeltaStatistics/Statistics";
+	
+	public static final long MAX_NET_FILE_SIZE = 1 * 1024 * 1024;
 
 	// File path should point to a file on the device's external storage
 	public static void SaveStatistics(String statistics, String statisticsFilePath, boolean replaceFlag)
 	{
 		File statFile = new File(Environment.getExternalStorageDirectory(), statisticsFilePath);
-
+		
 		try
 		{
 			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, !replaceFlag));
@@ -92,5 +94,19 @@ public class FileManager
 	public static File GetFile(String filePath)
 	{
 		return (new File(Environment.getExternalStorageDirectory(), filePath));
+	}
+	
+	public static long GetFileSize(String filePath)
+	{
+		long fileSize = 0;
+		
+		File file = new File(Environment.getExternalStorageDirectory(), filePath);
+		
+		if (file.exists() && !file.isDirectory())
+		{
+			return file.length();
+		}
+		
+		return fileSize;
 	}
 }

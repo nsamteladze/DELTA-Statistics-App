@@ -28,6 +28,11 @@ public class NetStatisticsService extends WakefulIntentService
 		netStatProvider.CollectStatistics(new Date());
 		
 		FileManager.SaveStatistics(netStatProvider.GetStatistics(StatisticsFormat.Machine), FileManager.NET_STAT_FILE_PATH, false);
+		
+		if (FileManager.GetFileSize(FileManager.USER_NET_STAT_FILE_PATH) > FileManager.MAX_NET_FILE_SIZE)
+		{
+			FileManager.CleanFile(FileManager.USER_NET_STAT_FILE_PATH);
+		}
 		FileManager.SaveStatistics(netStatProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.USER_NET_STAT_FILE_PATH, false);
 	}
 }
