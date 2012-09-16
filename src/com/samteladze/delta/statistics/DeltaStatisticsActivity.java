@@ -19,7 +19,7 @@ public class DeltaStatisticsActivity extends Activity
 	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_DAY;
 	private static Context _context;
 	// Unique request code for PendingIntent (used to distinguish intents)
-	private static final int INTENT_REQUEST_CODE = 0;
+	public static final int INTENT_REQUEST_CODE = 0;
 	
     /** Called when the activity is first created. */
     @Override 
@@ -37,14 +37,24 @@ public class DeltaStatisticsActivity extends Activity
  		// Create an Intent to start OnAlarmReceiver
  		Intent alarmIntent = new Intent(_context, OnAlarmReceiver.class);
  		// Create a PendingIntent from alarmIntent
- 		PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(_context, INTENT_REQUEST_CODE, alarmIntent, 0);
+ 		PendingIntent alarmTestPendingIntent = PendingIntent.getBroadcast(_context, INTENT_REQUEST_CODE, alarmIntent, PendingIntent.FLAG_NO_CREATE);
  		
- 		// Set repeating alarm that will invoke OnAlarmReceiver
- 		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
- 								  SystemClock.elapsedRealtime() + ALARM_DELAY, 
- 								 ALARM_PERIOD, alarmPendingIntent);        
- 		
- 		FileManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm was set.");
+ 		// If there is no such intent
+ 		if (alarmTestPendingIntent == null)
+ 		{
+ 			PendingIntent alarmPendingIntent = 
+ 					PendingIntent.getBroadcast(_context, INTENT_REQUEST_CODE, alarmIntent, 0);
+ 			// Set repeating alarm that will invoke OnAlarmReceiver
+ 	 		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
+ 	 								  SystemClock.elapsedRealtime() + ALARM_DELAY, 
+ 	 								  ALARM_PERIOD, alarmPendingIntent);   
+ 	 		
+ 	 		FileManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm was set.");
+ 		} 
+ 		else
+ 		{
+ 			FileManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm alredy exists. New alarm was no set.");
+ 		}
     }    
     
     @SuppressWarnings("unused")

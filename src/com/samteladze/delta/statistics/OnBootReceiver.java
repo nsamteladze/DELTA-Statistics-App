@@ -20,7 +20,8 @@ public class OnBootReceiver extends BroadcastReceiver
 		// Create an Intent to start OnAlarmReceiver
 		Intent alarmIntent = new Intent(context, OnAlarmReceiver.class);
 		// Create a PendingIntent from alarmIntent
-		PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+		PendingIntent alarmPendingIntent = 
+				PendingIntent.getBroadcast(context, DeltaStatisticsActivity.INTENT_REQUEST_CODE, alarmIntent, 0);
 		
 		// Set repeating alarm that will invoke OnAlarmReceiver
 		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
