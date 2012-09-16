@@ -21,11 +21,13 @@ public class AppStatisticsProvider
 {
 	private Context _context;
 	private ArrayList<AppStatistics> _statistics;
+	private String _deviceID;
 	
 	public AppStatisticsProvider(Context context)
 	{
 		_context = context;
 		_statistics = new ArrayList<AppStatistics>();
+		_deviceID = Constants.StatisticsNone;
 	}
 		
 	public void CollectStatistics()
@@ -98,6 +100,8 @@ public class AppStatisticsProvider
         	}        	
         } 
         
+        _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
+        
         LogManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected");
 	}
 	
@@ -127,7 +131,7 @@ public class AppStatisticsProvider
 		
 		if (format == StatisticsFormat.UserFriendly)
 		{
-			generatedStr += Constants.StatisticsNumberOfApps + _statistics.size() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsNumberOfAppsText + _statistics.size() + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutSeparator;
 		}
 		else if (format == StatisticsFormat.Machine)
@@ -142,16 +146,15 @@ public class AppStatisticsProvider
 	private String GetDeviceID(StatisticsFormat format)
 	{
 		String generatedStr = "";
-		String deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);
 		
 		if (format == StatisticsFormat.UserFriendly)
 		{
-			generatedStr += Constants.StatisticsDeviceID + deviceID + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsDeviceIDText + _deviceID + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutSeparator;
 		}
 		else if (format == StatisticsFormat.Machine)
 		{
-			generatedStr += deviceID + Constants.LayoutNextLine;
+			generatedStr += _deviceID + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutEndSection;
 		}
 		
@@ -166,5 +169,15 @@ public class AppStatisticsProvider
 	private boolean IsUpdatedSystemApp(ApplicationInfo appInfo) 
 	{
 	    return ((appInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0);	    
+	}
+	
+	public String DeviceID()
+	{
+		if (_deviceID.equals(Constants.StatisticsNone))
+		{
+			 _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);
+		}
+		
+		return _deviceID;
 	}
 }

@@ -37,38 +37,38 @@ public class NetStatistics
 		
 		if (activeNetInfo != null)
 		{
-			generatedStatistics += Constants.StatisticsActiveNetType + activeNetInfo.getTypeName() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsActiveNetSubtype + activeNetInfo.getSubtypeName() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsActiveNetCoarseState + activeNetInfo.getState().name() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsActiveNetFineState + activeNetInfo.getDetailedState().name() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsActiveNetTypeText + activeNetInfo.getTypeName() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsActiveNetSubtypeText + activeNetInfo.getSubtypeName() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsActiveNetCoarseStateText + activeNetInfo.getState().name() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsActiveNetFineStateText + activeNetInfo.getDetailedState().name() + Constants.LayoutNextLine;
 		}
 		else
 		{
-			generatedStatistics += Constants.StatisticsNoActiveNet + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsNoActiveNetText + Constants.LayoutNextLine;
 		}
 				
 		if (wifiNetInfo != null)
 		{
-			generatedStatistics += Constants.StatisticsWifiNetType + wifiNetInfo.getTypeName() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsWifiNetSubtype + wifiNetInfo.getSubtypeName() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsWifiNetCoarseState+ wifiNetInfo.getState().name() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsWifiNetFineState + wifiNetInfo.getDetailedState().name() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsWifiNetTypeText + wifiNetInfo.getTypeName() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsWifiNetSubtypeText + wifiNetInfo.getSubtypeName() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsWifiNetCoarseStateText + wifiNetInfo.getState().name() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsWifiNetFineStateText + wifiNetInfo.getDetailedState().name() + Constants.LayoutNextLine;
 		}
 		else
 		{
-			generatedStatistics += Constants.StatisticsNoWifiNet + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsNoWifiNetText + Constants.LayoutNextLine;
 		}
 		
 		if (mobileNetInfo != null)
 		{
-			generatedStatistics += Constants.StatisticsMobileNetType + mobileNetInfo.getTypeName() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsMobileNetSubtype + mobileNetInfo.getSubtypeName() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsMobileNetCoarseState + mobileNetInfo.getState().name() + Constants.LayoutNextLine;
-			generatedStatistics += Constants.StatisticsMobileNetFineState + mobileNetInfo.getDetailedState().name() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsMobileNetTypeText + mobileNetInfo.getTypeName() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsMobileNetSubtypeText + mobileNetInfo.getSubtypeName() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsMobileNetCoarseStateText + mobileNetInfo.getState().name() + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsMobileNetFineStateText + mobileNetInfo.getDetailedState().name() + Constants.LayoutNextLine;
 		}
 		else
 		{
-			generatedStatistics += Constants.StatisticsNoMobileNet + Constants.LayoutNextLine;
+			generatedStatistics += Constants.StatisticsNoMobileNetText + Constants.LayoutNextLine;
 		}
 		
 		generatedStatistics += Constants.LayoutSeparator;

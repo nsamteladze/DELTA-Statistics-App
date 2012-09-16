@@ -18,23 +18,24 @@ public class Constants
 	public static final String StatisticsFirstInstallTimeText = "First install time: ";
 	public static final String StatisticsLastUpdateTimeText = "Last update time: ";
 	public static final String StatisticsCodeSizeText = "Code size: ";
-	public static final String StatisticsNumberOfApps = "Number of applications: ";
-	public static final String StatisticsDeviceID = "Device ID: ";
+	public static final String StatisticsNumberOfAppsText = "Number of applications: ";
+	public static final String StatisticsDeviceIDText = "Device ID: ";
 	
-	public static final String StatisticsActiveNetType = "Active network type: ";
-	public static final String StatisticsActiveNetSubtype = "Active network subtype: ";
-	public static final String StatisticsActiveNetCoarseState = "Active network coarse-grained state: ";
-	public static final String StatisticsActiveNetFineState = "Active network fine-grained state: ";
-	public static final String StatisticsWifiNetType = "Network type: ";
-	public static final String StatisticsWifiNetSubtype = "Wi-Fi network subtype: ";
-	public static final String StatisticsWifiNetCoarseState = "Wi-Fi network coarse-grained state: ";
-	public static final String StatisticsWifiNetFineState = "Wi-Fi network fine-grained state: ";
-	public static final String StatisticsMobileNetType = "Network type: ";
-	public static final String StatisticsMobileNetSubtype = "Mobile network subtype: ";
-	public static final String StatisticsMobileNetCoarseState = "Mobile network coarse-grained state: ";
-	public static final String StatisticsMobileNetFineState = "Mobile network fine-grained state: ";
-	public static final String StatisticsNoActiveNet = "No active network";
-	public static final String StatisticsNoWifiNet = "No Wi-Fi network";
-	public static final String StatisticsNoMobileNet = "No Mobile network";
+	public static final String StatisticsActiveNetTypeText = "Active network type: ";
+	public static final String StatisticsActiveNetSubtypeText = "Active network subtype: ";
+	public static final String StatisticsActiveNetCoarseStateText = "Active network coarse-grained state: ";
+	public static final String StatisticsActiveNetFineStateText = "Active network fine-grained state: ";
+	public static final String StatisticsWifiNetTypeText = "Network type: ";
+	public static final String StatisticsWifiNetSubtypeText = "Wi-Fi network subtype: ";
+	public static final String StatisticsWifiNetCoarseStateText = "Wi-Fi network coarse-grained state: ";
+	public static final String StatisticsWifiNetFineStateText = "Wi-Fi network fine-grained state: ";
+	public static final String StatisticsMobileNetTypeText = "Network type: ";
+	public static final String StatisticsMobileNetSubtypeText = "Mobile network subtype: ";
+	public static final String StatisticsMobileNetCoarseStateText = "Mobile network coarse-grained state: ";
+	public static final String StatisticsMobileNetFineStateText = "Mobile network fine-grained state: ";
+	public static final String StatisticsNoActiveNetText = "No active network";
+	public static final String StatisticsNoWifiNetText = "No Wi-Fi network";
+	public static final String StatisticsNoMobileNetText = "No Mobile network";
+	
 	public static final String StatisticsNone = "none";
 }
