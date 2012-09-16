@@ -6,10 +6,10 @@ import java.util.Date;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
-import com.samteladze.delta.statistics.DataModel.NetStatistics;
-import com.samteladze.delta.statistics.DataModel.StatisticsFormat;
-import com.samteladze.delta.statistics.Utils.Constants;
-import com.samteladze.delta.statistics.Utils.FileManager;
+import com.samteladze.delta.statistics.datamodel.NetStatistics;
+import com.samteladze.delta.statistics.datamodel.StatisticsFormat;
+import com.samteladze.delta.statistics.utils.Constants;
+import com.samteladze.delta.statistics.utils.LogManager;
 
 public class NetStatisticsProvider
 {
@@ -33,7 +33,7 @@ public class NetStatisticsProvider
 	    _statistics.wifiNetInfo = mConnectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 	    _statistics.mobileNetInfo = mConnectivity.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 	    
-	    FileManager.Log(NetStatisticsProvider.class.getSimpleName(), "Statistics was collected.");
+	    LogManager.Log(NetStatisticsProvider.class.getSimpleName(), "Statistics was collected");
 	}
 	
 	public String GetStatistics(StatisticsFormat format)

@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.os.SystemClock;
 
 import com.commonsware.cwac.wakeful.WakefulIntentService;
-import com.samteladze.delta.statistics.DataModel.StatisticsFormat;
-import com.samteladze.delta.statistics.Utils.CommunicationManager;
-import com.samteladze.delta.statistics.Utils.FileManager;
+import com.samteladze.delta.statistics.datamodel.StatisticsFormat;
+import com.samteladze.delta.statistics.utils.CommunicationManager;
+import com.samteladze.delta.statistics.utils.FileManager;
+import com.samteladze.delta.statistics.utils.LogManager;
 
 public class AppStatisticsService extends WakefulIntentService
 {
@@ -26,15 +27,15 @@ public class AppStatisticsService extends WakefulIntentService
 	{
 		Context context = this.getApplicationContext();
 		
-		FileManager.Log(AppStatisticsService.class.getSimpleName(), "Starting the service.");
+		LogManager.Log(AppStatisticsService.class.getSimpleName(), "Starting the service");
 		
         AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(context);
         appStatisticsProvider.CollectStatistics(); 
         
-        FileManager.SaveAppStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly));
+        FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.APP_STAT_FILE_PATH);
         
         // Send statistics to server. Set another alarm if statistics was not sent
-        if (!CommunicationManager.SendStatisticsToServer())
+        if (!CommunicationManager.SendAppStatisticsToServer())
         {
         	// Get AlarmManager
      		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -49,7 +50,7 @@ public class AppStatisticsService extends WakefulIntentService
 						  	 SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES,
 						  	 alarmPendingIntent); 
      		
-     		FileManager.Log(AppStatisticsService.class.getSimpleName(), "One time alarm was scheduled");
+     		LogManager.Log(AppStatisticsService.class.getSimpleName(), "One time alarm was scheduled");
         }
 	}
 }

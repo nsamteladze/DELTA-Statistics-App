@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
-import com.samteladze.delta.statistics.Utils.FileManager;
+import com.samteladze.delta.statistics.utils.LogManager;
 
 public class OnBootReceiver extends BroadcastReceiver
 {
@@ -28,6 +28,6 @@ public class OnBootReceiver extends BroadcastReceiver
 								  SystemClock.elapsedRealtime() + DeltaStatisticsActivity.ALARM_DELAY, 
 								  DeltaStatisticsActivity.ALARM_PERIOD, alarmPendingIntent);
 		
-		FileManager.Log(OnBootReceiver.class.getSimpleName(), "Alarm was set.");
+		LogManager.Log(OnBootReceiver.class.getSimpleName(), "Repeating alarm was set");
 	}
 }

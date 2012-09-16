@@ -2,8 +2,8 @@ package com.samteladze.delta.statistics;
 
 import java.util.Date;
 
-import com.samteladze.delta.statistics.DataModel.StatisticsFormat;
-import com.samteladze.delta.statistics.Utils.FileManager;
+import com.samteladze.delta.statistics.datamodel.StatisticsFormat;
+import com.samteladze.delta.statistics.utils.FileManager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,7 +17,7 @@ public class OnConnectivityChangeReceiver extends BroadcastReceiver
 		NetStatisticsProvider netStatProvider = new NetStatisticsProvider(context.getApplicationContext());
 		netStatProvider.CollectStatistics(new Date());
 		
-		FileManager.SaveNetStatistics(netStatProvider.GetStatistics(StatisticsFormat.UserFriendly));
+		FileManager.SaveStatistics(netStatProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.NET_STAT_FILE_PATH);
 	}
 
 }

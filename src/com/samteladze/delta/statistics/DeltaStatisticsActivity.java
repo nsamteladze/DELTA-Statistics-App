@@ -9,14 +9,14 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.widget.Toast;
 
-import com.samteladze.delta.statistics.Utils.*;
+import com.samteladze.delta.statistics.utils.*;
 
 public class DeltaStatisticsActivity extends Activity 
 {
 	// Time delay in AlarmManager before the first alarm is fired
 	public static final int ALARM_DELAY = 120000;
 	// Time between alarms in AlarmManager
-	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_DAY;
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_HOUR;
 	private static Context _context;
 	// Unique request code for PendingIntent (used to distinguish intents)
 	public static final int INTENT_REQUEST_CODE = 0;
@@ -29,7 +29,7 @@ public class DeltaStatisticsActivity extends Activity
         setContentView(R.layout.main);       
         DeltaStatisticsActivity._context = getApplicationContext();
         
-        CreateRequiredFolders();
+        CreateRequiredFoldersAndFile();
         
 	    // Get AlarmManager
  		AlarmManager alarmManager = (AlarmManager) _context.getSystemService(Context.ALARM_SERVICE);
@@ -49,16 +49,16 @@ public class DeltaStatisticsActivity extends Activity
  	 								  SystemClock.elapsedRealtime() + ALARM_DELAY, 
  	 								  ALARM_PERIOD, alarmPendingIntent);   
  	 		
- 	 		FileManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm was set.");
+ 	 		LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Repeating alarm was set");
  		} 
  		else
  		{
- 			FileManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm alredy exists. New alarm was no set.");
+ 			LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Alarm alredy exists. New alarm was not set");
  		}
     }    
     
     @SuppressWarnings("unused")
-	private void SendStatisticsToMail(Intent sendIntent)
+	private void SendAppStatisticsToMail(Intent sendIntent)
     {
     	try 
     	{
@@ -66,17 +66,24 @@ public class DeltaStatisticsActivity extends Activity
         } 
     	catch (Exception e) 
     	{
-    		e.printStackTrace(FileManager.GetLogPrintStream());
+    		e.printStackTrace(System.err);
+    		
+    		LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
     		
             Toast.makeText(_context, "No e-mail clients installed", Toast.LENGTH_LONG).show();
     	}
     }
     
-    private void CreateRequiredFolders()
+    private void CreateRequiredFoldersAndFile()
     {
         if (!FileManager.HasFolderStructure())
         {
         	FileManager.CreateFolderStructure();
+        }
+        
+        if (!LogManager.LogExists())
+        {
+        	LogManager.CreateLog();
         }
     }
 }

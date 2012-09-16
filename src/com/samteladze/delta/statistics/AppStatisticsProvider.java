@@ -14,8 +14,8 @@ import android.content.pm.PackageStats;
 import android.os.RemoteException;
 import android.provider.Settings.Secure;
 
-import com.samteladze.delta.statistics.DataModel.*;
-import com.samteladze.delta.statistics.Utils.*;
+import com.samteladze.delta.statistics.datamodel.*;
+import com.samteladze.delta.statistics.utils.*;
 
 public class AppStatisticsProvider
 {
@@ -73,7 +73,9 @@ public class AppStatisticsProvider
         		}
         		catch (Exception e)
         		{
-        			e.printStackTrace(FileManager.GetLogPrintStream());
+        			e.printStackTrace(System.err);
+        			
+        			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
         		}
         		
         		try 
@@ -85,16 +87,18 @@ public class AppStatisticsProvider
         			AppStatistics.firstIntallTime = packageInfo.firstInstallTime;
         			AppStatistics.lastUpdateTime = packageInfo.lastUpdateTime;
 				} 
-        		catch (Exception exception) 
+        		catch (Exception e) 
         		{
-        			exception.printStackTrace(FileManager.GetLogPrintStream());
+        			e.printStackTrace(System.err);
+        			
+        			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
 				}   
         		
         		_statistics.add(AppStatistics);
         	}        	
         } 
         
-        FileManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected.");
+        LogManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected");
 	}
 	
 	public String GetStatistics(StatisticsFormat format)
