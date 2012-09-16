@@ -29,6 +29,7 @@ public class NetStatisticsService extends WakefulIntentService
 		
 		FileManager.SaveStatistics(netStatProvider.GetStatistics(StatisticsFormat.Machine), FileManager.NET_STAT_FILE_PATH, false);
 		
+		// Clean user's file with network statistics if its size exceeds 1MB
 		if (FileManager.GetFileSize(FileManager.USER_NET_STAT_FILE_PATH) > FileManager.MAX_NET_FILE_SIZE)
 		{
 			FileManager.CleanFile(FileManager.USER_NET_STAT_FILE_PATH);

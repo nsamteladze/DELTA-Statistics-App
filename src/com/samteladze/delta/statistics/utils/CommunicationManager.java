@@ -7,6 +7,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import android.content.Intent;
 import android.net.Uri;
@@ -59,6 +62,47 @@ public class CommunicationManager
 			e.printStackTrace(System.err);
 			
 			LogManager.Log(CommunicationManager.class.getSimpleName(), "ERROR! Could not send app statistics to the server");
+			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
+		}
+		
+		return false;
+	}
+	
+	public static boolean SendDataToServer(String deviceID)
+	{
+		File appFile = FileManager.GetFile(FileManager.APP_STAT_FILE_PATH);
+		File netFile = FileManager.GetFile(FileManager.NET_STAT_FILE_PATH);
+		File logFile = FileManager.GetFile(LogManager.LOG_FILE_PATH);
+		
+		try
+		{
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(SERVER_URL);
+
+			FileBody appBin= new FileBody(appFile);
+			FileBody netBin= new FileBody(netFile);
+			FileBody logBin= new FileBody(logFile);
+			
+			MultipartEntity reqEntity = new MultipartEntity();
+			reqEntity.addPart("appFile", appBin);
+			reqEntity.addPart("netFile", netBin);
+			reqEntity.addPart("logFile", logBin);
+			reqEntity.addPart("id", new StringBody(deviceID));
+			
+			httppost.setEntity(reqEntity);
+
+			@SuppressWarnings("unused")
+			HttpResponse response = httpclient.execute(httppost);
+			
+			LogManager.Log(CommunicationManager.class.getSimpleName(), "Statistics and log were sent to the server");
+			
+			return true;
+		} 
+		catch (Exception e)
+		{			
+			e.printStackTrace(System.err);
+			
+			LogManager.Log(CommunicationManager.class.getSimpleName(), "ERROR! Could not send statistics and log to the server");
 			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
 		}
 		
