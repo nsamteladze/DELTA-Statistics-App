@@ -1,9 +1,7 @@
 package com.samteladze.delta.statistics;
 
-import java.util.Date;
-
-import com.samteladze.delta.statistics.datamodel.StatisticsFormat;
-import com.samteladze.delta.statistics.utils.FileManager;
+import com.commonsware.cwac.wakeful.WakefulIntentService;
+import com.samteladze.delta.statistics.utils.LogManager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,11 +11,10 @@ public class OnConnectivityChangeReceiver extends BroadcastReceiver
 {
 	@Override
 	public void onReceive(Context context, Intent intent)
-	{					
-		NetStatisticsProvider netStatProvider = new NetStatisticsProvider(context.getApplicationContext());
-		netStatProvider.CollectStatistics(new Date());
+	{		
+		WakefulIntentService.sendWakefulWork(context, NetStatisticsService.class);
 		
-		FileManager.SaveStatistics(netStatProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.NET_STAT_FILE_PATH);
+		LogManager.Log(OnConnectivityChangeReceiver.class.getSimpleName(), "Network state was changed. Starting NetStatisticsService");
 	}
 
 }
