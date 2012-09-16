@@ -18,13 +18,13 @@ public class FileManager
 	private static final String STAT_FOLDER_PATH = "DeltaStatistics/Statistics";
 
 	// File path should point to a file on the device's external storage
-	public static void SaveStatistics(String statistics, String statisticsFilePath)
+	public static void SaveStatistics(String statistics, String statisticsFilePath, boolean replaceFlag)
 	{
 		File statFile = new File(Environment.getExternalStorageDirectory(), statisticsFilePath);
 
 		try
 		{
-			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, false));
+			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, !replaceFlag));
 
 			out.write(statistics);
 
