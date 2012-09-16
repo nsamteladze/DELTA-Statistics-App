@@ -50,7 +50,12 @@ public class AppStatisticsService extends WakefulIntentService
 						  	 SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES,
 						  	 alarmPendingIntent); 
      		
-     		LogManager.Log(AppStatisticsService.class.getSimpleName(), "One time alarm was scheduled");
+     		LogManager.Log(AppStatisticsService.class.getSimpleName(), "Single alarm was scheduled");
+        }
+        else
+        {
+    		LogManager.Log(AppStatisticsService.class.getSimpleName(), "Attempting to clean log");
+    		FileManager.CleanFile(LogManager.LOG_FILE_PATH);
         }
 	}
 }
