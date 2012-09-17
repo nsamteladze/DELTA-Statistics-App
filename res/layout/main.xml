@@ -27,7 +27,9 @@
             android:layout_marginLeft="50dp"
             android:layout_marginBottom="100dp"
             android:layout_alignParentBottom="true"
-            android:text="@string/collect_button_text"/>
+            android:text="@string/collect_button_text"
+            
+            android:onClick="OnClickCollect"/>
 	
     </RelativeLayout>
 

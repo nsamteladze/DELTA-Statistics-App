@@ -3,5 +3,6 @@
     <string name="app_name">DELTA Statistics</string>
     <string name="email_button_text">E-mail statistics</string>
     <string name="collect_button_text">Collect statistics</string>
+    <string name="status_icon_desc">status</string>
 
 </resources>

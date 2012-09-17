@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
@@ -13,12 +17,19 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageStats;
 import android.os.RemoteException;
 import android.provider.Settings.Secure;
+import android.widget.RemoteViews;
 
 import com.samteladze.delta.statistics.datamodel.*;
 import com.samteladze.delta.statistics.utils.*;
 
 public class AppStatisticsProvider
 {
+	private static final int START_NOTIFICATION_ID = 1;
+	private static final int FINISH_NOTIFICATION_ID = 2;
+	
+	private NotificationManager _mgrNotification;
+	private Notification _progressNotification;
+	
 	private Context _context;
 	private ArrayList<AppStatistics> _statistics;
 	private String _deviceID;
@@ -28,6 +39,8 @@ public class AppStatisticsProvider
 		_context = context;
 		_statistics = new ArrayList<AppStatistics>();
 		_deviceID = Constants.StatisticsNone;
+		_mgrNotification = (NotificationManager) _context.getSystemService(Context.NOTIFICATION_SERVICE);
+		_progressNotification = null;
 	}
 		
 	public void CollectStatistics()
@@ -39,8 +52,17 @@ public class AppStatisticsProvider
         
         final Semaphore countCodeSizeSemaphore = new Semaphore(1, true);
         
+        int progress = 0;
+        int maxProgress = installedApplications.size();
+        ConstructProgressNotification(maxProgress);
+              
         for (ApplicationInfo appInfo : installedApplications)
         {        	
+        	if ((progress % 20) == 1)
+        	{
+        		UpdateProgressNotification(progress, installedApplications.size());
+        	}
+        	
         	if (!IsSystemApp(appInfo) || IsUpdatedSystemApp(appInfo))
         	{
         		try
@@ -98,9 +120,15 @@ public class AppStatisticsProvider
         		
         		_statistics.add(AppStatistics);
         	}        	
+        	
+        	++progress;
         } 
         
         _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
+        
+        UpdateProgressNotification(progress, maxProgress);
+        CancelNotification(START_NOTIFICATION_ID);
+        CreateFinishNotification();
         
         LogManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected");
 	}
@@ -179,5 +207,58 @@ public class AppStatisticsProvider
 		}
 		
 		return _deviceID;
+	}
+
+	private void ConstructProgressNotification(int maxProgress)
+	{
+		// Configure the intent
+        Intent intent = new Intent();
+        final PendingIntent pendingIntent = PendingIntent.getActivity(_context, 0, intent, 0);
+        
+        // Create notification
+        _progressNotification = new Notification(R.drawable.icon_round, Constants.NotificationProgressText, System.currentTimeMillis());
+        _progressNotification.flags = _progressNotification.flags | Notification.FLAG_ONGOING_EVENT;
+        _progressNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_progress);
+        _progressNotification.contentIntent = pendingIntent;
+        _progressNotification.contentView.setImageViewResource(R.id.collection_progress_status_icon, R.drawable.icon_round);
+        _progressNotification.contentView.setTextViewText(R.id.collection_progress_status_text, Constants.NotificationProgressText);
+        _progressNotification.contentView.setProgressBar(R.id.collection_progress_status_progress, maxProgress, 0, false);
+        
+        _mgrNotification.notify(START_NOTIFICATION_ID, _progressNotification);
+	}
+	
+	private void UpdateProgressNotification(int progress, int maxProgress)
+	{
+		if (_progressNotification == null)
+		{
+			LogManager.Log(AppStatisticsProvider.class.getSimpleName(), "ERROR! Could not update notification progress");
+			return;
+		}
+		
+		_progressNotification.contentView.setProgressBar(R.id.collection_progress_status_progress, maxProgress, progress, false);
+		_mgrNotification.notify(START_NOTIFICATION_ID, _progressNotification);
+	}
+	
+	private void CreateFinishNotification()
+	{
+		// Configure the intent
+        Intent intent = new Intent(_context, DeltaStatisticsActivity.class);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(_context, 0, intent, 0);
+        
+        // Create notification
+        Notification fisnishNotification = new Notification(R.drawable.icon_round, Constants.NotificationFinishText, System.currentTimeMillis());
+        fisnishNotification.flags = _progressNotification.flags | Notification.FLAG_AUTO_CANCEL;
+        fisnishNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_finished);
+        fisnishNotification.contentIntent = pendingIntent;
+        fisnishNotification.contentView.setImageViewResource(R.id.collection_finished_status_icon, R.drawable.icon_round);
+        fisnishNotification.contentView.setTextViewText(R.id.collection_finished_status_text, Constants.NotificationFinishText);
+        fisnishNotification.contentView.setTextViewText(R.id.collection_finished_header_text, Constants.NotificationAppNameText);
+        
+        _mgrNotification.notify(FINISH_NOTIFICATION_ID, fisnishNotification);
+	}
+	
+	private void CancelNotification(int notificationID)
+	{
+		_mgrNotification.cancel(notificationID);
 	}
 }

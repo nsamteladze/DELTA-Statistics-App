@@ -38,4 +38,8 @@ public class Constants
 	public static final String StatisticsNoMobileNetText = "No Mobile network";
 	
 	public static final String StatisticsNone = "none";
+	
+	public static final String NotificationProgressText = "Collecting statistics...";
+	public static final String NotificationFinishText = "Statistics collection finished"; 
+	public static final String NotificationAppNameText = "DELTA Statistics";
 }

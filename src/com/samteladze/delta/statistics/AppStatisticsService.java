@@ -33,6 +33,7 @@ public class AppStatisticsService extends WakefulIntentService
         appStatisticsProvider.CollectStatistics(); 
         
         FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.Machine), FileManager.APP_STAT_FILE_PATH, true);
+        FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.USER_APP_STAT_FILE_PATH, true);
         
         // Send statistics to server. Set another alarm if statistics was not sent
         if (!CommunicationManager.SendAppStatisticsToServer())

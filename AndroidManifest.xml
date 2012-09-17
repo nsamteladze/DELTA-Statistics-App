@@ -41,6 +41,8 @@
         </receiver>
 
         <service android:name=".AppStatisticsService" />
+        <service android:name=".UserAppStatisticsService" />
+        <service android:name=".NetStatisticsService" />
     </application>
 
 </manifest>

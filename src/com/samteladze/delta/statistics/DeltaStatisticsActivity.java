@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.Toast;
 
+import com.commonsware.cwac.wakeful.WakefulIntentService;
 import com.samteladze.delta.statistics.utils.*;
 
 public class DeltaStatisticsActivity extends Activity 
@@ -85,5 +87,12 @@ public class DeltaStatisticsActivity extends Activity
         {
         	LogManager.CreateLog();
         }
+    }
+    
+    public void OnClickCollect(View view)
+    {
+    	WakefulIntentService.sendWakefulWork(getApplicationContext(), UserAppStatisticsService.class);
+		
+		LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Collecting statistics");
     }
 }
