@@ -135,6 +135,8 @@ public class AppStatisticsProvider
         CancelNotification(START_NOTIFICATION_ID);
         CreateFinishNotification();
         
+        SpanNotifications();
+        
         LogManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected");
 	}
 	
@@ -250,15 +252,12 @@ public class AppStatisticsProvider
 		// Configure the intents
         Intent contentIntent = new Intent(_context, DeltaStatisticsActivity.class);
         final PendingIntent contentPendingIntent = PendingIntent.getActivity(_context, 0, contentIntent, 0);
-        Intent deleteIntent = new Intent(_context, OnNotificationDeleteReceiver.class);
-        final PendingIntent deletePendingIntent = PendingIntent.getBroadcast(_context, 0, deleteIntent, 0);
         
         // Create notification
         Notification fisnishNotification = new Notification(R.drawable.icon_border, Constants.NotificationFinishText, System.currentTimeMillis());
         fisnishNotification.flags = fisnishNotification.flags | Notification.FLAG_AUTO_CANCEL;
         fisnishNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_finished);
         fisnishNotification.contentIntent = contentPendingIntent;
-        fisnishNotification.deleteIntent = deletePendingIntent;
         fisnishNotification.contentView.setImageViewResource(R.id.collection_finished_status_icon, R.drawable.icon_border);
         fisnishNotification.contentView.setTextViewText(R.id.collection_finished_status_text, Constants.NotificationFinishText);
         fisnishNotification.contentView.setTextViewText(R.id.collection_finished_header_text, Constants.NotificationAppNameText);
@@ -269,5 +268,25 @@ public class AppStatisticsProvider
 	private void CancelNotification(int notificationID)
 	{
 		_mgrNotification.cancel(notificationID);
+	}
+	
+	private void SpanNotifications()
+	{
+		// Configure the intents
+        Intent contentIntent = new Intent();
+        final PendingIntent contentPendingIntent = PendingIntent.getActivity(_context, 0, contentIntent, 0);
+        
+        for (int i = 10; i < 20; ++i)
+        {
+	        // Create notification
+	        Notification fisnishNotification = new Notification(R.drawable.icon_border, "#" + i, System.currentTimeMillis());
+	        fisnishNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_finished);
+	        fisnishNotification.contentIntent = contentPendingIntent;
+	        fisnishNotification.contentView.setImageViewResource(R.id.collection_finished_status_icon, R.drawable.icon_border);
+	        fisnishNotification.contentView.setTextViewText(R.id.collection_finished_status_text, "#" + i);
+	        fisnishNotification.contentView.setTextViewText(R.id.collection_finished_header_text, Constants.NotificationAppNameText);
+	        
+	        _mgrNotification.notify(i, fisnishNotification);
+        }
 	}
 }
