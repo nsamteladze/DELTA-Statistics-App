@@ -44,8 +44,7 @@ public class LogManager
 		{
 			BufferedWriter out = new BufferedWriter(new FileWriter(logFile, logFile.exists()));
 
-			out.write(new Date().toString() + " | " + tag + " : " + logMessage);
-			out.newLine();
+			out.write(new Date().toString() + " | " + tag + " : " + logMessage + Constants.LayoutNextLine);
 
 			out.close();
 		} 

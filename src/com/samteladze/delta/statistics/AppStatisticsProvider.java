@@ -255,7 +255,7 @@ public class AppStatisticsProvider
         
         // Create notification
         Notification fisnishNotification = new Notification(R.drawable.icon_border, Constants.NotificationFinishText, System.currentTimeMillis());
-        fisnishNotification.flags = _progressNotification.flags | Notification.FLAG_AUTO_CANCEL;
+        fisnishNotification.flags = fisnishNotification.flags | Notification.FLAG_AUTO_CANCEL;
         fisnishNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_finished);
         fisnishNotification.contentIntent = contentPendingIntent;
         fisnishNotification.deleteIntent = deletePendingIntent;
