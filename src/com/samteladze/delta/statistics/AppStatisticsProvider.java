@@ -1,3 +1,8 @@
+
+/* TODO
+ * 1. Make notifications a separate class?????
+ */
+
 package com.samteladze.delta.statistics;
 
 import java.lang.reflect.Method;
@@ -25,7 +30,7 @@ import com.samteladze.delta.statistics.utils.*;
 public class AppStatisticsProvider
 {
 	private static final int START_NOTIFICATION_ID = 1;
-	private static final int FINISH_NOTIFICATION_ID = 2;
+	public static final int FINISH_NOTIFICATION_ID = 2;
 	
 	private NotificationManager _mgrNotification;
 	private Notification _progressNotification;
@@ -216,11 +221,12 @@ public class AppStatisticsProvider
         final PendingIntent pendingIntent = PendingIntent.getActivity(_context, 0, intent, 0);
         
         // Create notification
-        _progressNotification = new Notification(R.drawable.icon_round, Constants.NotificationProgressText, System.currentTimeMillis());
-        _progressNotification.flags = _progressNotification.flags | Notification.FLAG_ONGOING_EVENT;
+        _progressNotification = new Notification(R.drawable.icon_border, Constants.NotificationProgressText, System.currentTimeMillis());
+        _progressNotification.flags |= Notification.FLAG_ONGOING_EVENT;
+        _progressNotification.flags |= Notification.FLAG_NO_CLEAR;
         _progressNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_progress);
         _progressNotification.contentIntent = pendingIntent;
-        _progressNotification.contentView.setImageViewResource(R.id.collection_progress_status_icon, R.drawable.icon_round);
+        _progressNotification.contentView.setImageViewResource(R.id.collection_progress_status_icon, R.drawable.icon_border);
         _progressNotification.contentView.setTextViewText(R.id.collection_progress_status_text, Constants.NotificationProgressText);
         _progressNotification.contentView.setProgressBar(R.id.collection_progress_status_progress, maxProgress, 0, false);
         
@@ -241,16 +247,19 @@ public class AppStatisticsProvider
 	
 	private void CreateFinishNotification()
 	{
-		// Configure the intent
-        Intent intent = new Intent(_context, DeltaStatisticsActivity.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(_context, 0, intent, 0);
+		// Configure the intents
+        Intent contentIntent = new Intent(_context, DeltaStatisticsActivity.class);
+        final PendingIntent contentPendingIntent = PendingIntent.getActivity(_context, 0, contentIntent, 0);
+        Intent deleteIntent = new Intent(_context, OnNotificationDeleteReceiver.class);
+        final PendingIntent deletePendingIntent = PendingIntent.getBroadcast(_context, 0, deleteIntent, 0);
         
         // Create notification
-        Notification fisnishNotification = new Notification(R.drawable.icon_round, Constants.NotificationFinishText, System.currentTimeMillis());
+        Notification fisnishNotification = new Notification(R.drawable.icon_border, Constants.NotificationFinishText, System.currentTimeMillis());
         fisnishNotification.flags = _progressNotification.flags | Notification.FLAG_AUTO_CANCEL;
         fisnishNotification.contentView = new RemoteViews(_context.getPackageName(), R.layout.collection_finished);
-        fisnishNotification.contentIntent = pendingIntent;
-        fisnishNotification.contentView.setImageViewResource(R.id.collection_finished_status_icon, R.drawable.icon_round);
+        fisnishNotification.contentIntent = contentPendingIntent;
+        fisnishNotification.deleteIntent = deletePendingIntent;
+        fisnishNotification.contentView.setImageViewResource(R.id.collection_finished_status_icon, R.drawable.icon_border);
         fisnishNotification.contentView.setTextViewText(R.id.collection_finished_status_text, Constants.NotificationFinishText);
         fisnishNotification.contentView.setTextViewText(R.id.collection_finished_header_text, Constants.NotificationAppNameText);
         

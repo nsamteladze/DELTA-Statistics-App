@@ -15,14 +15,14 @@
 	    android:layout_width="fill_parent"
 		android:layout_height="fill_parent" 
 		android:layout_toRightOf="@id/collection_finished_status_icon"
-		android:layout_marginLeft="20dp">
+		android:layout_marginLeft="10dp">
 
 	    <TextView android:id="@+id/collection_finished_header_text" 
 		    android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			android:layout_alignParentTop="true" 
 			android:textColor="@android:color/black"
-			android:textSize="20dp"
+			android:textSize="15dp"
 			android:textStyle="bold"
 			/>
 	    

@@ -15,7 +15,7 @@
 	    android:layout_width="fill_parent"
 		android:layout_height="fill_parent" 
 		android:layout_toRightOf="@id/collection_progress_status_icon"
-		android:layout_marginLeft="20dp">
+		android:layout_marginLeft="10dp">
 
 		<TextView android:id="@+id/collection_progress_status_text" 
 		    android:layout_width="fill_parent"
