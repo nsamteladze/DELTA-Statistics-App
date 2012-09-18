@@ -48,7 +48,7 @@ public class AppStatisticsProvider
 		_progressNotification = null;
 	}
 		
-	public void CollectStatistics()
+	public void CollectStatistics(boolean notifyUser)
 	{
 		// Get PackageManager and list of all the installed applications
 		final PackageManager packageManager = _context.getPackageManager();
@@ -59,16 +59,23 @@ public class AppStatisticsProvider
         
         int progress = 0;
         int maxProgress = installedApplications.size();
-        CancelNotification(FINISH_NOTIFICATION_ID);
-        ConstructProgressNotification(maxProgress);
+        
+        if (notifyUser)
+        {
+	        CancelNotification(FINISH_NOTIFICATION_ID);
+	        ConstructProgressNotification(maxProgress);
+        }
               
         for (ApplicationInfo appInfo : installedApplications)
-        {        	
-        	if ((progress % 20) == 1)
+        {      
+        	if (notifyUser)
         	{
-        		UpdateProgressNotification(progress, installedApplications.size());
+	        	if ((progress % 20) == 1)
+	        	{
+	        		UpdateProgressNotification(progress, installedApplications.size());
+	        	}
         	}
-        	
+	        	
         	if (!IsSystemApp(appInfo) || IsUpdatedSystemApp(appInfo))
         	{
         		try
@@ -132,9 +139,12 @@ public class AppStatisticsProvider
         
         _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
         
-        UpdateProgressNotification(progress, maxProgress);
-        CancelNotification(START_NOTIFICATION_ID);
-        CreateFinishNotification();
+        if (notifyUser)
+        {
+	        UpdateProgressNotification(progress, maxProgress);
+	        CancelNotification(START_NOTIFICATION_ID);
+	        CreateFinishNotification();
+        }
         
         LogManager.Log(AppStatisticsProvider.class.getSimpleName(), "Statistics was collected");
 	}

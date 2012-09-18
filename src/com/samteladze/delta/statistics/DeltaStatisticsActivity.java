@@ -1,5 +1,7 @@
 package com.samteladze.delta.statistics;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -59,8 +61,7 @@ public class DeltaStatisticsActivity extends Activity
  		}
     }    
     
-    @SuppressWarnings("unused")
-	private void SendAppStatisticsToMail(Intent sendIntent)
+	private void EmailStatistics(Intent sendIntent)
     {
     	try 
     	{
@@ -94,5 +95,19 @@ public class DeltaStatisticsActivity extends Activity
     	WakefulIntentService.sendWakefulWork(getApplicationContext(), UserAppStatisticsService.class);
 		
 		LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Collecting statistics");
+    }
+    
+    public void OnClickEmail(View view)
+    {
+    	File userAppStatFile = FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH);
+    	
+    	if (userAppStatFile.exists() && !userAppStatFile.isDirectory())
+    	{
+    		EmailStatistics(CommunicationManager.CreatEmailDataIntent());
+    	}
+    	else
+    	{
+    		// Popup message and do nothing
+    	}
     }
 }

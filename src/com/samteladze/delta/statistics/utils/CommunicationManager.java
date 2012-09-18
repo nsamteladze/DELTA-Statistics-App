@@ -2,6 +2,7 @@ package com.samteladze.delta.statistics.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -21,16 +22,20 @@ public class CommunicationManager
 	private static final String MAIL_SUBJECT = "Delta Statistics";
 	private static final String MAIL_ADDRESS = "delta.statistics@gmail.com";
 	
-	public static Intent CreatEmailAppStatisticsIntent()
+	public static Intent CreatEmailDataIntent()
 	{
-		Uri statFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH));
-
+		ArrayList<Uri> filesUri = new ArrayList<Uri>();
+		Uri appFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH));
+		Uri netFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_NET_STAT_FILE_PATH));		
+		filesUri.add(appFileUri);
+		filesUri.add(netFileUri);
+		
 		Intent sendIntent = new Intent(Intent.ACTION_SEND);
 		sendIntent.setType("text/plain");
 		sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { MAIL_ADDRESS });
 		sendIntent.putExtra(Intent.EXTRA_SUBJECT, MAIL_SUBJECT);
 		sendIntent.putExtra(Intent.EXTRA_TEXT, MAIL_TEXT);
-		sendIntent.putExtra(Intent.EXTRA_STREAM, statFileUri);
+		sendIntent.putExtra(Intent.EXTRA_STREAM, filesUri);
 
 		return sendIntent;
 	}

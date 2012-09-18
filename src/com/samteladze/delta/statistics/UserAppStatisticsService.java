@@ -23,7 +23,7 @@ public class UserAppStatisticsService extends WakefulIntentService
 		LogManager.Log(UserAppStatisticsService.class.getSimpleName(), "Starting the service");
 		
         AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(context);
-        appStatisticsProvider.CollectStatistics(); 
+        appStatisticsProvider.CollectStatistics(true); 
         
         FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.USER_APP_STAT_FILE_PATH, true);       
 	}
