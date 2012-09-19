@@ -42,4 +42,7 @@ public class Constants
 	public static final String NotificationProgressText = "Collecting statistics...";
 	public static final String NotificationFinishText = "Statistics collection finished"; 
 	public static final String NotificationAppNameText = "DELTA Statistics";
+	
+	public static final String MsgNoStatistics = "Statistics for your device has not been collected yet. " +
+												 "Please click <Collect statistics> button to collect it now.";
 }

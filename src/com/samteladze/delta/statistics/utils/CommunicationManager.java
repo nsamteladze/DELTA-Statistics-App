@@ -18,9 +18,8 @@ import android.net.Uri;
 public class CommunicationManager
 {
 	private static final String SERVER_URL = "http://xdp-apps.org/stat-collector/collect";
-	private static final String MAIL_TEXT = "Current statistics.";
-	private static final String MAIL_SUBJECT = "Delta Statistics";
-	private static final String MAIL_ADDRESS = "delta.statistics@gmail.com";
+	private static final String MAIL_TEXT = "Current statistics for your device is attached.";
+	private static final String MAIL_SUBJECT = "DELTA Statistics";
 	
 	public static Intent CreatEmailDataIntent()
 	{
@@ -30,14 +29,13 @@ public class CommunicationManager
 		filesUri.add(appFileUri);
 		filesUri.add(netFileUri);
 		
-		Intent sendIntent = new Intent(Intent.ACTION_SEND);
-		sendIntent.setType("text/plain");
-		sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { MAIL_ADDRESS });
-		sendIntent.putExtra(Intent.EXTRA_SUBJECT, MAIL_SUBJECT);
-		sendIntent.putExtra(Intent.EXTRA_TEXT, MAIL_TEXT);
-		sendIntent.putExtra(Intent.EXTRA_STREAM, filesUri);
+		Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+		emailIntent.setType("text/plain");
+		emailIntent.putExtra(Intent.EXTRA_SUBJECT, MAIL_SUBJECT);
+		emailIntent.putExtra(Intent.EXTRA_TEXT, MAIL_TEXT);
+		emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, filesUri);
 
-		return sendIntent;
+		return emailIntent;
 	}
 
 	public static boolean SendAppStatisticsToServer()

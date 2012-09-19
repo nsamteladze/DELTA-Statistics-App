@@ -4,8 +4,10 @@ import java.io.File;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -101,13 +103,25 @@ public class DeltaStatisticsActivity extends Activity
     {
     	File userAppStatFile = FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH);
     	
-    	if (userAppStatFile.exists() && !userAppStatFile.isDirectory())
+    	if (!userAppStatFile.exists() || userAppStatFile.isDirectory())
     	{
-    		EmailStatistics(CommunicationManager.CreatEmailDataIntent());
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    		builder.setMessage(Constants.MsgNoStatistics)
+    		       .setCancelable(false)
+    		       .setPositiveButton("OK", new DialogInterface.OnClickListener()
+		       	   {
+    		           public void onClick(DialogInterface dialog, int id) 
+    		           {
+
+    		           }
+    		       });
+    		
+			AlertDialog alert = builder.create();
+    		alert.show();
+    		
+    		return;
     	}
-    	else
-    	{
-    		// Popup message and do nothing
-    	}
+		
+    	EmailStatistics(CommunicationManager.CreatEmailDataIntent());
     }
 }
