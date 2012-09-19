@@ -36,6 +36,8 @@ public class Constants
 	public static final String StatisticsNoActiveNetText = "No active network";
 	public static final String StatisticsNoWifiNetText = "No Wi-Fi network";
 	public static final String StatisticsNoMobileNetText = "No Mobile network";
+	public static final String StatisticsLanguageText = "Language: ";
+	public static final String StatisticsCountryText = "Country: ";
 	
 	public static final String StatisticsNone = "none";
 	

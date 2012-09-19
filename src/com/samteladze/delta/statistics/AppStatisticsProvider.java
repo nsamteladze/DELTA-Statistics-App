@@ -1,13 +1,10 @@
 
-/* TODO
- * 1. Make notifications a separate class?????
- */
-
 package com.samteladze.delta.statistics;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Semaphore;
 
 import android.app.Notification;
@@ -38,12 +35,16 @@ public class AppStatisticsProvider
 	private Context _context;
 	private ArrayList<AppStatistics> _statistics;
 	private String _deviceID;
+	private String _deviceLanguage;
+	private String _deviceContry;
 	
 	public AppStatisticsProvider(Context context)
 	{
 		_context = context;
 		_statistics = new ArrayList<AppStatistics>();
 		_deviceID = Constants.StatisticsNone;
+		_deviceLanguage = Constants.StatisticsNone;
+		_deviceContry = Constants.StatisticsNone;
 		_mgrNotification = (NotificationManager) _context.getSystemService(Context.NOTIFICATION_SERVICE);
 		_progressNotification = null;
 	}
@@ -138,6 +139,8 @@ public class AppStatisticsProvider
         } 
         
         _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
+        _deviceLanguage = Locale.getDefault().getDisplayLanguage();
+        _deviceContry = Locale.getDefault().getDisplayCountry();
         
         if (notifyUser)
         {
@@ -154,6 +157,7 @@ public class AppStatisticsProvider
 		String statisticsStr = "";
 		
 		statisticsStr += GetDeviceID(format);
+		statisticsStr += GetLanguageCountry(format);
 		statisticsStr += GetNumberOfApps(format);
 		
 		for (AppStatistics appStatistics : _statistics)
@@ -188,6 +192,26 @@ public class AppStatisticsProvider
 	}
 	
 	private String GetDeviceID(StatisticsFormat format)
+	{
+		String generatedStr = "";
+		
+		if (format == StatisticsFormat.UserFriendly)
+		{
+			generatedStr += Constants.StatisticsLanguageText + _deviceLanguage + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsCountryText + _deviceContry + Constants.LayoutNextLine;
+			generatedStr += Constants.LayoutSeparator;
+		}
+		else if (format == StatisticsFormat.Machine)
+		{
+			generatedStr += _deviceLanguage + Constants.LayoutNextLine;
+			generatedStr += _deviceContry + Constants.LayoutNextLine;
+			generatedStr += Constants.LayoutEndSection;
+		}
+		
+		return generatedStr;
+	}
+	
+	private String GetLanguageCountry(StatisticsFormat format)
 	{
 		String generatedStr = "";
 		
