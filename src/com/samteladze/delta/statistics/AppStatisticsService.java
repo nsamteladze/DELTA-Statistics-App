@@ -36,7 +36,7 @@ public class AppStatisticsService extends WakefulIntentService
         FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.USER_APP_STAT_FILE_PATH, true);
         
         // Send statistics to server. Set another alarm if statistics was not sent
-        if (!CommunicationManager.SendAppStatisticsToServer())
+        if (!CommunicationManager.SendTaggedDataToServer(appStatisticsProvider.DeviceID()))
         {
         	// Get AlarmManager
      		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -58,5 +58,7 @@ public class AppStatisticsService extends WakefulIntentService
     		LogManager.Log(AppStatisticsService.class.getSimpleName(), "Attempting to clean log");
     		FileManager.CleanFile(LogManager.LOG_FILE_PATH);
         }
+        
+        FileManager.DeleteTempFile();
 	}
 }

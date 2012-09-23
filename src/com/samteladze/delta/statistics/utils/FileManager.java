@@ -1,9 +1,13 @@
 
 package com.samteladze.delta.statistics.utils;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+
 import android.os.Environment;
 
 public class FileManager
@@ -17,7 +21,10 @@ public class FileManager
 	
 	private static final String STAT_FOLDER_PATH = "DeltaStatistics/Statistics";
 	
-	public static final long MAX_NET_FILE_SIZE = 1 * 1024 * 1024;
+	public static final long MAX_NET_FILE_SIZE = 1 * 512 * 1024; // 0.5 MB
+	
+	// TEMP
+	private static final String TEMP_FILE_PATH = "DeltaStatistics/temp.txt";
 
 	// File path should point to a file on the device's external storage
 	public static void SaveStatistics(String statistics, String statisticsFilePath, boolean replaceFlag)
@@ -108,5 +115,72 @@ public class FileManager
 		}
 		
 		return fileSize;
+	}
+	
+	// TEMP
+	public static File TagFile(String filePath, String tag, String deviceID)
+	{
+		File file = new File(Environment.getExternalStorageDirectory(), filePath);
+
+		StringBuilder text = new StringBuilder();
+
+		try 
+		{
+		    BufferedReader br = new BufferedReader(new FileReader(file));
+		    String line;
+
+		    while ((line = br.readLine()) != null) 
+		    {
+		        text.append(line);
+		        text.append(Constants.LayoutNextLine);
+		    }
+		}
+		catch (IOException e) 
+		{
+			e.printStackTrace(System.err);	
+			
+			LogManager.Log(FileManager.class.getSimpleName(), "ERROR! Could not read from file " + filePath);
+			LogManager.Log(FileManager.class.getSimpleName(), e.toString());
+			
+			return null;
+		}
+		
+		File tagFile = new File(Environment.getExternalStorageDirectory(), TEMP_FILE_PATH);
+		
+		try
+		{
+			BufferedWriter out = new BufferedWriter(new FileWriter(tagFile, false));
+
+			out.write(deviceID + Constants.LayoutNextLine);
+			out.write(tag + Constants.LayoutNextLine);
+			out.write(text.toString());
+
+			out.close();
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace(System.err);	
+			
+			LogManager.Log(FileManager.class.getSimpleName(), "ERROR! Could not add tag to file " + filePath);
+			LogManager.Log(FileManager.class.getSimpleName(), e.toString());
+			
+			return null;
+		}
+		
+		return tagFile;
+	}
+	
+	// TEMP
+	public static void DeleteTempFile()
+	{
+		File tempFile = new File(Environment.getExternalStorageDirectory(), TEMP_FILE_PATH);
+		
+		if (tempFile.exists() && !tempFile.isDirectory())
+		{
+			if (!tempFile.delete())
+			{
+				LogManager.Log(FileManager.class.getSimpleName(), "ERROR! Could not delete temp file");
+			}
+		}
 	}
 }

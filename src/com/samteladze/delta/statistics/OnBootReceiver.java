@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import com.samteladze.delta.statistics.utils.EULAManager;
 import com.samteladze.delta.statistics.utils.LogManager;
 
 public class OnBootReceiver extends BroadcastReceiver
@@ -14,6 +15,12 @@ public class OnBootReceiver extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
+		// Do nothing if user has not agreed with EUAL
+		if (!EULAManager.TokenExists())
+		{
+			return;
+		}
+		
 		// Get AlarmManager
 		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		

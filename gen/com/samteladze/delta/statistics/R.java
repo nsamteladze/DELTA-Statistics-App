@@ -16,8 +16,8 @@ public final class R {
         public static final int icon_border=0x7f020002;
     }
     public static final class id {
-        public static final int ButtonCollect=0x7f050007;
-        public static final int ButtonEmail=0x7f050006;
+        public static final int ButtonCollect=0x7f050006;
+        public static final int ButtonEmail=0x7f050007;
         public static final int collection_finished_header_text=0x7f050001;
         public static final int collection_finished_status_icon=0x7f050000;
         public static final int collection_finished_status_text=0x7f050002;

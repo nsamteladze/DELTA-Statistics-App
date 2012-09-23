@@ -22,7 +22,7 @@ public class DeltaStatisticsActivity extends Activity
 	// Time delay in AlarmManager before the first alarm is fired
 	public static final int ALARM_DELAY = 120000;
 	// Time between alarms in AlarmManager
-	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_HOUR;
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_HALF_DAY;
 	private static Context _context;
 	// Unique request code for PendingIntent (used to distinguish intents)
 	public static final int INTENT_REQUEST_CODE = 0;
@@ -32,11 +32,38 @@ public class DeltaStatisticsActivity extends Activity
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);       
+        setContentView(R.layout.main);  
+        
+        if (!EULAManager.TokenExists())
+    	{
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    		builder.setMessage(Constants.MsgEULA)
+    			   .setTitle(Constants.MsgTitleEULA)
+    		       .setCancelable(false)
+    		       .setPositiveButton("OK", new DialogInterface.OnClickListener()
+		       	   {
+    		           public void onClick(DialogInterface dialog, int id) 
+    		           {
+    		        	   EULAManager.CreateAcceptToken();
+    		           }
+    		       })
+    		       .setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+		       	   {
+    		           public void onClick(DialogInterface dialog, int id) 
+    		           {
+    		        	   finish();
+    		           }
+    		       });
+    		
+    		
+			AlertDialog alert = builder.create();
+    		alert.show();
+    	}
+        
         DeltaStatisticsActivity._context = getApplicationContext();
         
         CreateRequiredFoldersAndFile();
-        
+       
 	    // Get AlarmManager
  		AlarmManager alarmManager = (AlarmManager) _context.getSystemService(Context.ALARM_SERVICE);
  		

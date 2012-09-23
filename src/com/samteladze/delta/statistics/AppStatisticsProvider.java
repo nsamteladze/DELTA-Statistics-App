@@ -191,7 +191,7 @@ public class AppStatisticsProvider
 		return generatedStr;
 	}
 	
-	private String GetDeviceID(StatisticsFormat format)
+	private String GetLanguageCountry(StatisticsFormat format)
 	{
 		String generatedStr = "";
 		
@@ -211,7 +211,7 @@ public class AppStatisticsProvider
 		return generatedStr;
 	}
 	
-	private String GetLanguageCountry(StatisticsFormat format)
+	private String GetDeviceID(StatisticsFormat format)
 	{
 		String generatedStr = "";
 		
