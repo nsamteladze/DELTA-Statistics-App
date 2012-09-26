@@ -35,16 +35,13 @@ public class AppStatisticsProvider
 	private Context _context;
 	private ArrayList<AppStatistics> _statistics;
 	private String _deviceID;
-	private String _deviceLanguage;
-	private String _deviceContry;
+	private Locale _deviceLocale;
 	
 	public AppStatisticsProvider(Context context)
 	{
 		_context = context;
 		_statistics = new ArrayList<AppStatistics>();
 		_deviceID = Constants.StatisticsNone;
-		_deviceLanguage = Constants.StatisticsNone;
-		_deviceContry = Constants.StatisticsNone;
 		_mgrNotification = (NotificationManager) _context.getSystemService(Context.NOTIFICATION_SERVICE);
 		_progressNotification = null;
 	}
@@ -139,8 +136,8 @@ public class AppStatisticsProvider
         } 
         
         _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
-        _deviceLanguage = Locale.getDefault().getDisplayLanguage();
-        _deviceContry = Locale.getDefault().getDisplayCountry();
+        _deviceLocale = Locale.getDefault();
+
         
         if (notifyUser)
         {
@@ -197,14 +194,16 @@ public class AppStatisticsProvider
 		
 		if (format == StatisticsFormat.UserFriendly)
 		{
-			generatedStr += Constants.StatisticsLanguageText + _deviceLanguage + Constants.LayoutNextLine;
-			generatedStr += Constants.StatisticsCountryText + _deviceContry + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsLanguageText + _deviceLocale.getDisplayLanguage() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsCountryText + _deviceLocale.getDisplayCountry() + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutSeparator;
 		}
 		else if (format == StatisticsFormat.Machine)
 		{
-			generatedStr += _deviceLanguage + Constants.LayoutNextLine;
-			generatedStr += _deviceContry + Constants.LayoutNextLine;
+			generatedStr += _deviceLocale.getDisplayLanguage() + Constants.LayoutNextLine;
+			generatedStr += _deviceLocale.getDisplayCountry() + Constants.LayoutNextLine;
+			generatedStr += _deviceLocale.getISO3Language() + Constants.LayoutNextLine;
+			generatedStr += _deviceLocale.getISO3Country() + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutEndSection;
 		}
 		
