@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.commonsware.cwac.wakeful.WakefulIntentService;
@@ -26,6 +27,8 @@ public class DeltaStatisticsActivity extends Activity
 	private static Context _context;
 	// Unique request code for PendingIntent (used to distinguish intents)
 	public static final int INTENT_REQUEST_CODE = 0;
+	
+	public static boolean COLLECTING = false;
 	
     /** Called when the activity is first created. */
     @Override 
@@ -122,6 +125,8 @@ public class DeltaStatisticsActivity extends Activity
     
     public void OnClickCollect(View view)
     {
+    	COLLECTING = true;
+    	
     	WakefulIntentService.sendWakefulWork(getApplicationContext(), UserAppStatisticsService.class);
 		
 		LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "Collecting statistics");
@@ -129,6 +134,25 @@ public class DeltaStatisticsActivity extends Activity
     
     public void OnClickEmail(View view)
     {
+    	if (COLLECTING)
+    	{
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    		builder.setMessage(Constants.MsgCollectionInProcess)
+    		       .setCancelable(false)
+    		       .setPositiveButton("OK", new DialogInterface.OnClickListener()
+		       	   {
+    		           public void onClick(DialogInterface dialog, int id) 
+    		           {
+
+    		           }
+    		       });
+    		
+			AlertDialog alert = builder.create();
+    		alert.show();
+    		
+    		return;
+    	}
+    	
     	File userAppStatFile = FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH);
     	
     	if (!userAppStatFile.exists() || userAppStatFile.isDirectory())

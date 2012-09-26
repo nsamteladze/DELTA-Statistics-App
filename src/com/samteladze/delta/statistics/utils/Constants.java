@@ -69,4 +69,5 @@ public class Constants
 										 "By clicking OK you agree to all the terms of the agreement above and allow the developer " +
 										 "to use the collected data from your device for research purposes.";
 	public static final String MsgTitleEULA = "End User License Agreement";
+	public static final String MsgCollectionInProcess = "Statistics is currently collecting. Please wait for this process to finish.";
 }

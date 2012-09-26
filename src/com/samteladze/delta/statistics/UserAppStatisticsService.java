@@ -25,6 +25,8 @@ public class UserAppStatisticsService extends WakefulIntentService
         AppStatisticsProvider appStatisticsProvider = new AppStatisticsProvider(context);
         appStatisticsProvider.CollectStatistics(true); 
         
-        FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.USER_APP_STAT_FILE_PATH, true);       
+        FileManager.SaveStatistics(appStatisticsProvider.GetStatistics(StatisticsFormat.UserFriendly), FileManager.USER_APP_STAT_FILE_PATH, true);   
+        
+        DeltaStatisticsActivity.COLLECTING = false;
 	}
 }
