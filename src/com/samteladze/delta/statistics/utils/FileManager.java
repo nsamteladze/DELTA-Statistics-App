@@ -4,9 +4,11 @@ package com.samteladze.delta.statistics.utils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import android.os.Environment;
 
@@ -33,10 +35,14 @@ public class FileManager
 		
 		try
 		{
-			BufferedWriter out = new BufferedWriter(new FileWriter(statFile, !replaceFlag));
+			// TEST for multiple languages support
+			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(statFile, !replaceFlag), "UTF8"));
+			
+			//BufferedWriter out = new BufferedWriter(new FileWriter(statFile, !replaceFlag));
 
 			out.write(statistics);
 
+			out.flush();
 			out.close();
 			
 			LogManager.Log(FileManager.class.getSimpleName(), "Statistics was saved to " + statisticsFilePath);
@@ -149,12 +155,16 @@ public class FileManager
 		
 		try
 		{
-			BufferedWriter out = new BufferedWriter(new FileWriter(tagFile, false));
+			// TEST
+			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tagFile, false), "UTF8"));
+			
+			//BufferedWriter out = new BufferedWriter(new FileWriter(tagFile, false));
 
 			out.write(deviceID + Constants.LayoutNextLine);
-			out.write(tag + Constants.LayoutNextLine);
+			out.write(tag + Constants.LayoutEndSection);
 			out.write(text.toString());
 
+			out.flush();
 			out.close();
 		} 
 		catch (Exception e)

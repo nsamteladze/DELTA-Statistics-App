@@ -53,7 +53,7 @@ public class Constants
 										 "The primary purpose of this application is gathering statistics about the " +
 									 	 "applications installed on your device (such as name, size, installation date, " +
 										 "last update date) and network connectivity (availability of Wi-Fi and Mobile " +
-									 	 "networks). Application also collects your device ID and your default coutry and " +
+									 	 "networks). Application also collects your device ID and your default country and " +
 										 "language. For the best of our knowledge, it is impossible to determine the device's " +
 									 	 "user or any other personal information based on the collected statistics. " +
 										 "The collected statistics will be further used for research purposes. Collected " +
@@ -63,7 +63,7 @@ public class Constants
 										 "Nikolai Samteladze, as is. The application is provided free of charge by the developer. " +
 										 "However, the means of delivering the application to your device may include a service " +
 										 "fee. The developer, Nikolai Samteladze, or the University of South Florida and any of its " +
-										 "emploees or students cannot be held responsible for any damage or loss that you may " +
+										 "employees or students cannot be held responsible for any damage or loss that you may " +
 										 "suffer by the use or installation of this application to your device. Use at your own " +
 										 "risk." + "\r\n" + "\r\n" +
 										 "By clicking OK you agree to all the terms of the agreement above and allow the developer " +

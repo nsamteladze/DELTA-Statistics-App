@@ -34,7 +34,8 @@ public class DeltaStatisticsActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);  
         
-        if (!EULAManager.TokenExists())
+        // EULA is not shown due to Dr. Christensen suggestion
+        /*if (!EULAManager.TokenExists())
     	{
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
     		builder.setMessage(Constants.MsgEULA)
@@ -58,7 +59,7 @@ public class DeltaStatisticsActivity extends Activity
     		
 			AlertDialog alert = builder.create();
     		alert.show();
-    	}
+    	}*/
         
         DeltaStatisticsActivity._context = getApplicationContext();
         

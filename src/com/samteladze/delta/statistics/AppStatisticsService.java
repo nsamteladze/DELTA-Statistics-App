@@ -57,6 +57,8 @@ public class AppStatisticsService extends WakefulIntentService
         {
     		LogManager.Log(AppStatisticsService.class.getSimpleName(), "Attempting to clean log");
     		FileManager.CleanFile(LogManager.LOG_FILE_PATH);
+    		LogManager.Log(AppStatisticsService.class.getSimpleName(), "Attempting to clean net statistics");
+    		FileManager.CleanFile(FileManager.NET_STAT_FILE_PATH);
         }
         
         FileManager.DeleteTempFile();

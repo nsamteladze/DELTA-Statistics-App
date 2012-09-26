@@ -74,41 +74,11 @@ public class CommunicationManager
 	// TEMP
 	public static boolean SendTaggedDataToServer(String deviceID)
 	{
-		File[] filesToSend = new File[3];
-		filesToSend[0] = FileManager.TagFile(FileManager.APP_STAT_FILE_PATH, "app", deviceID);
-		filesToSend[1] = FileManager.TagFile(FileManager.NET_STAT_FILE_PATH, "net", deviceID);
-		filesToSend[2] = FileManager.TagFile(LogManager.LOG_FILE_PATH, "log", deviceID);
-		
-		for (File file : filesToSend)
+		if (!SendFileToServer(FileManager.TagFile(FileManager.APP_STAT_FILE_PATH, "app", deviceID)) ||
+			!SendFileToServer(FileManager.TagFile(FileManager.NET_STAT_FILE_PATH, "net", deviceID))	||
+			!SendFileToServer(FileManager.TagFile(LogManager.LOG_FILE_PATH, "log", deviceID)))
 		{
-			if (file != null)
-			{
-				try
-				{
-					HttpClient httpclient = new DefaultHttpClient();
-					HttpPost httppost = new HttpPost(SERVER_URL);
-		
-					InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
-					reqEntity.setContentType("binary/octet-stream");
-					reqEntity.setChunked(true);
-					
-					httppost.setEntity(reqEntity);
-		
-					@SuppressWarnings("unused")
-					HttpResponse response = httpclient.execute(httppost);
-					
-					LogManager.Log(CommunicationManager.class.getSimpleName(), "File was sent to the server");
-				} 
-				catch (Exception e)
-				{			
-					e.printStackTrace(System.err);
-					
-					LogManager.Log(CommunicationManager.class.getSimpleName(), "ERROR! Could not send file to the server");
-					LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
-					
-					return false;
-				}
-			}
+			return false;
 		}
 		
 		return true;
@@ -153,5 +123,36 @@ public class CommunicationManager
 		}
 		
 		return false;
+	}
+
+	private static boolean SendFileToServer(File file)
+	{
+		try
+		{
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(SERVER_URL);
+
+			InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
+			reqEntity.setContentType("binary/octet-stream");
+			reqEntity.setChunked(true);
+			
+			httppost.setEntity(reqEntity);
+
+			@SuppressWarnings("unused")
+			HttpResponse response = httpclient.execute(httppost);
+			
+			LogManager.Log(CommunicationManager.class.getSimpleName(), "File was sent to the server");
+			
+			return true;
+		} 
+		catch (Exception e)
+		{			
+			e.printStackTrace(System.err);
+			
+			LogManager.Log(CommunicationManager.class.getSimpleName(), "ERROR! Could not send file to the server");
+			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
+			
+			return false;
+		}
 	}
 }
