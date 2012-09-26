@@ -1,6 +1,7 @@
 
 package com.samteladze.delta.statistics;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Context;
@@ -41,6 +42,12 @@ public class NetStatisticsProvider
 		String statisticsStr = "";
 		
 		statisticsStr += _statCollectionDateTime.toString() + Constants.LayoutNextLine;
+		if (format == StatisticsFormat.Machine)
+		{
+			statisticsStr += Calendar.ZONE_OFFSET + Constants.LayoutNextLine;
+			statisticsStr += Calendar.DST_OFFSET + Constants.LayoutNextLine;
+		}
+		statisticsStr += Constants.LayoutEndItem;
 		statisticsStr += _statistics.Format(format);
 		
 		return statisticsStr;

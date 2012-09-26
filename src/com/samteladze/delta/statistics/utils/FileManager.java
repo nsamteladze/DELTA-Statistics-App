@@ -161,7 +161,7 @@ public class FileManager
 			//BufferedWriter out = new BufferedWriter(new FileWriter(tagFile, false));
 
 			out.write(deviceID + Constants.LayoutNextLine);
-			out.write(tag + Constants.LayoutEndSection);
+			out.write(tag + Constants.LayoutNextLine + Constants.LayoutEndSection);
 			out.write(text.toString());
 
 			out.flush();
