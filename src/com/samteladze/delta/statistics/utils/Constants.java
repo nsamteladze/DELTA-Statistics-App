@@ -70,4 +70,5 @@ public class Constants
 										 "to use the collected data from your device for research purposes.";
 	public static final String MsgTitleEULA = "End User License Agreement";
 	public static final String MsgCollectionInProcess = "Statistics is currently collecting. Please wait for this process to finish.";
+	public static final String MsgAppTitle = "DELTA Statistics";
 }
