@@ -3,8 +3,10 @@ package com.samteladze.delta.statistics;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
 
 import android.app.Notification;
@@ -35,7 +37,6 @@ public class AppStatisticsProvider
 	private Context _context;
 	private ArrayList<AppStatistics> _statistics;
 	private String _deviceID;
-	private Locale _deviceLocale;
 	
 	public AppStatisticsProvider(Context context)
 	{
@@ -136,7 +137,7 @@ public class AppStatisticsProvider
         } 
         
         _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
-        _deviceLocale = Locale.getDefault();
+        
 
         
         if (notifyUser)
@@ -150,11 +151,12 @@ public class AppStatisticsProvider
 	}
 	
 	public String GetStatistics(StatisticsFormat format)
-	{
+	{  
 		String statisticsStr = "";
 		
 		statisticsStr += GetDeviceID(format);
-		statisticsStr += GetLanguageCountry(format);
+		statisticsStr += GetLocale(format);
+		statisticsStr += GetTimeZone(format);
 		statisticsStr += GetNumberOfApps(format);
 		
 		for (AppStatistics appStatistics : _statistics)
@@ -188,22 +190,48 @@ public class AppStatisticsProvider
 		return generatedStr;
 	}
 	
-	private String GetLanguageCountry(StatisticsFormat format)
+	private String GetTimeZone(StatisticsFormat format)
 	{
 		String generatedStr = "";
+		 
+		TimeZone timeZone = TimeZone.getDefault();
 		
 		if (format == StatisticsFormat.UserFriendly)
 		{
-			generatedStr += Constants.StatisticsLanguageText + _deviceLocale.getDisplayLanguage() + Constants.LayoutNextLine;
-			generatedStr += Constants.StatisticsCountryText + _deviceLocale.getDisplayCountry() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsTimeZoneNameText + timeZone.getDisplayName() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsTimeZoneIDText + timeZone.getID() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsTimeZoneDSTText + timeZone.getDSTSavings() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsTimeZoneInDSTText + timeZone.inDaylightTime(new Date()) + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutSeparator;
 		}
 		else if (format == StatisticsFormat.Machine)
 		{
-			generatedStr += _deviceLocale.getDisplayLanguage() + Constants.LayoutNextLine;
-			generatedStr += _deviceLocale.getDisplayCountry() + Constants.LayoutNextLine;
-			generatedStr += _deviceLocale.getISO3Language() + Constants.LayoutNextLine;
-			generatedStr += _deviceLocale.getISO3Country() + Constants.LayoutNextLine;
+			generatedStr += timeZone.getDisplayName() + Constants.LayoutNextLine;
+			generatedStr += timeZone.getID() + Constants.LayoutNextLine;
+			generatedStr += timeZone.getDSTSavings() + Constants.LayoutNextLine;
+			generatedStr += timeZone.inDaylightTime(new Date()) + Constants.LayoutNextLine;
+			generatedStr += Constants.LayoutEndSection;
+		}
+				
+		return generatedStr;
+	}
+	
+	private String GetLocale(StatisticsFormat format)
+	{
+		String generatedStr = "";
+		
+		Locale deviceLocale = Locale.getDefault();
+		
+		if (format == StatisticsFormat.UserFriendly)
+		{
+			generatedStr += Constants.StatisticsLanguageText + deviceLocale.getISO3Language() + Constants.LayoutNextLine;
+			generatedStr += Constants.StatisticsCountryText + deviceLocale.getISO3Country() + Constants.LayoutNextLine;
+			generatedStr += Constants.LayoutSeparator;
+		}
+		else if (format == StatisticsFormat.Machine)
+		{
+			generatedStr += deviceLocale.getISO3Language() + Constants.LayoutNextLine;
+			generatedStr += deviceLocale.getISO3Country() + Constants.LayoutNextLine;
 			generatedStr += Constants.LayoutEndSection;
 		}
 		

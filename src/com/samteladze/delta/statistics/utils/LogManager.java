@@ -4,7 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import android.os.Environment;
 
@@ -43,8 +45,10 @@ public class LogManager
 		try
 		{
 			BufferedWriter out = new BufferedWriter(new FileWriter(logFile, logFile.exists()));
-
-			out.write(new Date().toString() + " | " + tag + " : " + logMessage + Constants.LayoutNextLine);
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+						
+			out.write(dateFormat.format(new Date()) + " | " + tag + " : " + logMessage + Constants.LayoutNextLine);
 
 			out.close();
 		} 

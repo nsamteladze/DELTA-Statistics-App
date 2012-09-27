@@ -39,6 +39,11 @@ public class Constants
 	public static final String StatisticsLanguageText = "Language: ";
 	public static final String StatisticsCountryText = "Country: ";
 	
+	public static final String StatisticsTimeZoneNameText = "Time zone name: ";
+	public static final String StatisticsTimeZoneIDText = "Time zone ID: ";
+	public static final String StatisticsTimeZoneDSTText = "Daylight savings: ";
+	public static final String StatisticsTimeZoneInDSTText = "Daylight savings apply: ";
+	
 	public static final String StatisticsNone = "none";
 	
 	public static final String NotificationProgressText = "Collecting statistics...";

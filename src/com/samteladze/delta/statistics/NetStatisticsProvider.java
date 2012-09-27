@@ -1,8 +1,9 @@
 
 package com.samteladze.delta.statistics;
 
-import java.util.Calendar;
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -41,13 +42,10 @@ public class NetStatisticsProvider
 	{
 		String statisticsStr = "";
 		
-		statisticsStr += _statCollectionDateTime.toString() + Constants.LayoutNextLine;
-		if (format == StatisticsFormat.Machine)
-		{
-			statisticsStr += Calendar.ZONE_OFFSET + Constants.LayoutNextLine;
-			statisticsStr += Calendar.DST_OFFSET + Constants.LayoutNextLine;
-		}
-		statisticsStr += Constants.LayoutEndItem;
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		
+		statisticsStr += dateFormat.format(_statCollectionDateTime) + Constants.LayoutNextLine;
 		statisticsStr += _statistics.Format(format);
 		
 		return statisticsStr;

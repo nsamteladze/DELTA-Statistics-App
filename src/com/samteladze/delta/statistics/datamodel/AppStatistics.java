@@ -1,8 +1,8 @@
 package com.samteladze.delta.statistics.datamodel;
 
+import java.text.DateFormat;
 import java.util.Date;
-
-import android.text.format.DateFormat;
+import java.util.TimeZone;
 
 import com.samteladze.delta.statistics.utils.*;
 
@@ -45,17 +45,18 @@ public class AppStatistics
 	{
 		String generatedStatistics = "";
 		
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+		
 		generatedStatistics += Constants.StatisticsPackageNameText + packageName + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsAppNameText + appName + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsVersionNameText + versionName + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsVersionCodeText + versionCode + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsCodeSizeText + codeSize + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsFirstInstallTimeText + 
-							   DateFormat.format(Constants.DateFormat, new Date(firstIntallTime)).toString() +
-							   Constants.LayoutNextLine;
+							   dateFormat.format(new Date(firstIntallTime)) + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsLastUpdateTimeText + 
-				   			   DateFormat.format(Constants.DateFormat, new Date(lastUpdateTime)).toString() +
-				   			   Constants.LayoutNextLine;
+				   			   dateFormat.format(new Date(lastUpdateTime)) + Constants.LayoutNextLine;
 		generatedStatistics += Constants.LayoutSeparator;
 		
 		return generatedStatistics;
