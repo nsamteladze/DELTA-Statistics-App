@@ -1,6 +1,7 @@
 package com.samteladze.delta.statistics;
 
 import java.io.File;
+import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Toast;
@@ -22,7 +24,7 @@ public class DeltaStatisticsActivity extends Activity
 	// Time delay in AlarmManager before the first alarm is fired
 	public static final int ALARM_DELAY = 120000;
 	// Time between alarms in AlarmManager
-	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_HALF_DAY;
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
 	private static Context _context;
 	// Unique request code for PendingIntent (used to distinguish intents)
 	public static final int INTENT_REQUEST_CODE = 0;
@@ -65,7 +67,7 @@ public class DeltaStatisticsActivity extends Activity
         
         DeltaStatisticsActivity._context = getApplicationContext();
         
-        CreateRequiredFoldersAndFile();
+        CreateRequiredFoldersAndFiles();
        
 	    // Get AlarmManager
  		AlarmManager alarmManager = (AlarmManager) _context.getSystemService(Context.ALARM_SERVICE);
@@ -109,7 +111,7 @@ public class DeltaStatisticsActivity extends Activity
     	}
     }
     
-    private void CreateRequiredFoldersAndFile()
+    private void CreateRequiredFoldersAndFiles()
     {
         if (!FileManager.HasFolderStructure())
         {
@@ -119,6 +121,23 @@ public class DeltaStatisticsActivity extends Activity
         if (!LogManager.LogExists())
         {
         	LogManager.CreateLog();
+        }
+        
+        if (!FileManager.FileExists(FileManager.NET_STAT_FILE_PATH))
+        {
+        	File netStatsFile = new File(Environment.getExternalStorageDirectory(), FileManager.NET_STAT_FILE_PATH);
+        	try
+			{
+				if (!netStatsFile.createNewFile())
+				{
+					LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), "ERROR! Could not create NET_STAT file");
+				}
+			} 
+        	catch (IOException e)
+			{
+				e.printStackTrace(System.err);
+				LogManager.Log(DeltaStatisticsActivity.class.getSimpleName(), e.toString());
+			}
         }
     }
     
@@ -153,9 +172,7 @@ public class DeltaStatisticsActivity extends Activity
     		return;
     	}
     	
-    	File userAppStatFile = FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH);
-    	
-    	if (!userAppStatFile.exists() || userAppStatFile.isDirectory())
+    	if (!FileManager.FileExists(FileManager.USER_APP_STAT_FILE_PATH))
     	{
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
     		builder.setMessage(Constants.MsgNoStatistics)

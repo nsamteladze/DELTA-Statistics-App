@@ -198,7 +198,6 @@ public class AppStatisticsProvider
 		
 		if (format == StatisticsFormat.UserFriendly)
 		{
-			generatedStr += Constants.StatisticsTimeZoneNameText + timeZone.getDisplayName() + Constants.LayoutNextLine;
 			generatedStr += Constants.StatisticsTimeZoneIDText + timeZone.getID() + Constants.LayoutNextLine;
 			generatedStr += Constants.StatisticsTimeZoneDSTText + timeZone.getDSTSavings() + Constants.LayoutNextLine;
 			generatedStr += Constants.StatisticsTimeZoneInDSTText + timeZone.inDaylightTime(new Date()) + Constants.LayoutNextLine;
@@ -206,7 +205,6 @@ public class AppStatisticsProvider
 		}
 		else if (format == StatisticsFormat.Machine)
 		{
-			generatedStr += timeZone.getDisplayName() + Constants.LayoutNextLine;
 			generatedStr += timeZone.getID() + Constants.LayoutNextLine;
 			generatedStr += timeZone.getDSTSavings() + Constants.LayoutNextLine;
 			generatedStr += timeZone.inDaylightTime(new Date()) + Constants.LayoutNextLine;

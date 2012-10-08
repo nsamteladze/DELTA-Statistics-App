@@ -17,17 +17,24 @@ import android.net.Uri;
 
 public class CommunicationManager
 {
-	private static final String SERVER_URL = "http://xdp-apps.org/stat-collector/collect";
+	private static final String SERVER_URL = "http://xdp-apps.org/stat-collector-2/collect";
 	private static final String MAIL_TEXT = "Current statistics for your device is attached.";
 	private static final String MAIL_SUBJECT = "DELTA Statistics";
 	
 	public static Intent CreatEmailDataIntent()
 	{
 		ArrayList<Uri> filesUri = new ArrayList<Uri>();
-		Uri appFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH));
-		Uri netFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_NET_STAT_FILE_PATH));		
-		filesUri.add(appFileUri);
-		filesUri.add(netFileUri);
+		
+		if (FileManager.FileExists(FileManager.USER_APP_STAT_FILE_PATH))
+		{
+			Uri appFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_APP_STAT_FILE_PATH));
+			filesUri.add(appFileUri);
+		}
+		if (FileManager.FileExists(FileManager.USER_NET_STAT_FILE_PATH))
+		{
+			Uri netFileUri = Uri.fromFile(FileManager.GetFile(FileManager.USER_NET_STAT_FILE_PATH));		
+			filesUri.add(netFileUri);
+		}
 		
 		Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
 		emailIntent.setType("text/plain");

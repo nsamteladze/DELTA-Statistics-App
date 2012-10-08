@@ -106,7 +106,21 @@ public class FileManager
 	
 	public static File GetFile(String filePath)
 	{
-		return (new File(Environment.getExternalStorageDirectory(), filePath));
+		File file = new File(Environment.getExternalStorageDirectory(), filePath);
+		
+		if (file.exists() && !file.isDirectory())
+		{
+			return (new File(Environment.getExternalStorageDirectory(), filePath));
+		}
+		
+		return null;
+	}
+	
+	public static boolean FileExists(String filePath)
+	{
+		File file = new File(Environment.getExternalStorageDirectory(), filePath);
+		
+		return (file.exists() && !file.isDirectory());
 	}
 	
 	public static long GetFileSize(String filePath)

@@ -42,7 +42,7 @@ public class NetStatisticsProvider
 	{
 		String statisticsStr = "";
 		
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG);
 		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 		
 		statisticsStr += dateFormat.format(_statCollectionDateTime) + Constants.LayoutNextLine;

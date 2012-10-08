@@ -45,7 +45,7 @@ public class LogManager
 		try
 		{
 			BufferedWriter out = new BufferedWriter(new FileWriter(logFile, logFile.exists()));
-			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG);
 			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 						
 			out.write(dateFormat.format(new Date()) + " | " + tag + " : " + logMessage + Constants.LayoutNextLine);
