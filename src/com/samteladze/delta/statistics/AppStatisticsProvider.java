@@ -1,6 +1,7 @@
 
 package com.samteladze.delta.statistics;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,10 +87,10 @@ public class AppStatisticsProvider
 					e.printStackTrace(System.err);
 				}
         		
-        		final AppStatistics AppStatistics = new AppStatistics();
+        		final AppStatistics appStatistics = new AppStatistics();
         		
-        		AppStatistics.packageName = appInfo.packageName;    		
-        		AppStatistics.appName = appInfo.loadLabel(packageManager).toString();
+        		appStatistics.packageName = appInfo.packageName;    		
+        		appStatistics.appName = appInfo.loadLabel(packageManager).toString();
         		       		
         		try
         		{       		
@@ -102,7 +103,7 @@ public class AppStatisticsProvider
 	    		        		public void onGetStatsCompleted(PackageStats pStats, boolean succeeded)
 	    		                    throws RemoteException 
 	    	                    {
-	    		        			AppStatistics.codeSize = pStats.codeSize;
+	    		        			appStatistics.codeSize = pStats.codeSize;
 	    		        			countCodeSizeSemaphore.release();
 	    		                }
 	    		            }); 
@@ -118,10 +119,10 @@ public class AppStatisticsProvider
         		{
         			PackageInfo packageInfo = packageManager.getPackageInfo(appInfo.packageName, 0);					
 					
-        			AppStatistics.versionName = packageInfo.versionName;	        		
-        			AppStatistics.versionCode = packageInfo.versionCode;
-        			AppStatistics.firstIntallTime = packageInfo.firstInstallTime;
-        			AppStatistics.lastUpdateTime = packageInfo.lastUpdateTime;
+        			appStatistics.versionName = packageInfo.versionName;	        		
+        			appStatistics.versionCode = packageInfo.versionCode;
+        			String appFile = appInfo.sourceDir;
+        			appStatistics.lastUpdateTime = (new File(appFile)).lastModified();
 				} 
         		catch (Exception e) 
         		{
@@ -130,7 +131,7 @@ public class AppStatisticsProvider
         			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
 				}   
         		
-        		_statistics.add(AppStatistics);
+        		_statistics.add(appStatistics);
         	}        	
         	
         	++progress;

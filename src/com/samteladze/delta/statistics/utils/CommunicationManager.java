@@ -107,10 +107,10 @@ public class CommunicationManager
 			FileBody logBin= new FileBody(logFile);
 			
 			MultipartEntity reqEntity = new MultipartEntity();
+			reqEntity.addPart("id", new StringBody(deviceID));
 			reqEntity.addPart("appFile", appBin);
 			reqEntity.addPart("netFile", netBin);
 			reqEntity.addPart("logFile", logBin);
-			reqEntity.addPart("id", new StringBody(deviceID));
 			
 			httppost.setEntity(reqEntity);
 
