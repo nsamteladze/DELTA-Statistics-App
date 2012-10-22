@@ -2,25 +2,19 @@
 package com.samteladze.delta.statistics;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.List; 
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.concurrent.Semaphore;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageStats;
-import android.os.RemoteException;
 import android.provider.Settings.Secure;
 import android.widget.RemoteViews;
 
@@ -55,8 +49,6 @@ public class AppStatisticsProvider
         List<ApplicationInfo> installedApplications = 
         		packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
         
-        final Semaphore countCodeSizeSemaphore = new Semaphore(1, true);
-        
         int progress = 0;
         int maxProgress = installedApplications.size();
         
@@ -78,43 +70,12 @@ public class AppStatisticsProvider
 	        	
         	if (!IsSystemApp(appInfo) || IsUpdatedSystemApp(appInfo))
         	{
-        		try
-				{
-					countCodeSizeSemaphore.acquire();
-				} 
-        		catch (InterruptedException e)
-				{
-					e.printStackTrace(System.err);
-				}
         		
         		final AppStatistics appStatistics = new AppStatistics();
         		
         		appStatistics.packageName = appInfo.packageName;    		
         		appStatistics.appName = appInfo.loadLabel(packageManager).toString();
-        		       		
-        		try
-        		{       		
-	        		Method getPackageSizeInfo = packageManager.getClass().getMethod(
-	    		            "getPackageSizeInfo", String.class, IPackageStatsObserver.class);
-	    	        	
-	        		getPackageSizeInfo.invoke(packageManager, appInfo.packageName,
-	    		            new IPackageStatsObserver.Stub() 
-	    		        	{    		        	    
-	    		        		public void onGetStatsCompleted(PackageStats pStats, boolean succeeded)
-	    		                    throws RemoteException 
-	    	                    {
-	    		        			appStatistics.codeSize = pStats.codeSize;
-	    		        			countCodeSizeSemaphore.release();
-	    		                }
-	    		            }); 
-        		}
-        		catch (Exception e)
-        		{
-        			e.printStackTrace(System.err);
-        			
-        			LogManager.Log(CommunicationManager.class.getSimpleName(), e.toString());
-        		}
-        		
+        		       		        		
         		try 
         		{
         			PackageInfo packageInfo = packageManager.getPackageInfo(appInfo.packageName, 0);					
@@ -138,8 +99,6 @@ public class AppStatisticsProvider
         } 
         
         _deviceID = Secure.getString(_context.getContentResolver(), Secure.ANDROID_ID);	
-        
-
         
         if (notifyUser)
         {

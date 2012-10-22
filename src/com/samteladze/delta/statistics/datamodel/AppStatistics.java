@@ -12,9 +12,7 @@ public class AppStatistics
 	public String appName;	
 	public String versionName;
 	public int versionCode;
-	public long firstIntallTime;
 	public long lastUpdateTime;
-	public long codeSize;
 	
 	public AppStatistics()
 	{
@@ -22,9 +20,7 @@ public class AppStatistics
 		appName = Constants.EmptyStr;
 		versionName = Constants.EmptyStr;
 		versionCode = 0;
-		firstIntallTime = 0;
 		lastUpdateTime = 0;
-		codeSize = 0;
 	}
 	
 	public String Format(StatisticsFormat format)
@@ -52,9 +48,6 @@ public class AppStatistics
 		generatedStatistics += Constants.StatisticsAppNameText + appName + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsVersionNameText + versionName + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsVersionCodeText + versionCode + Constants.LayoutNextLine;
-		generatedStatistics += Constants.StatisticsCodeSizeText + codeSize + Constants.LayoutNextLine;
-		generatedStatistics += Constants.StatisticsFirstInstallTimeText + 
-							   dateFormat.format(new Date(firstIntallTime)) + Constants.LayoutNextLine;
 		generatedStatistics += Constants.StatisticsLastUpdateTimeText + 
 				   			   dateFormat.format(new Date(lastUpdateTime)) + Constants.LayoutNextLine;
 		generatedStatistics += Constants.LayoutSeparator;
@@ -70,8 +63,6 @@ public class AppStatistics
 		generatedStatistics += appName + Constants.LayoutNextLine;
 		generatedStatistics += versionName + Constants.LayoutNextLine;
 		generatedStatistics += versionCode + Constants.LayoutNextLine;
-		generatedStatistics += codeSize + Constants.LayoutNextLine;
-		generatedStatistics += firstIntallTime + Constants.LayoutNextLine;
 		generatedStatistics += lastUpdateTime + Constants.LayoutNextLine;
 		generatedStatistics += Constants.LayoutEndItem;
 		

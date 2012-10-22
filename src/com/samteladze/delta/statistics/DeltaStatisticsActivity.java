@@ -24,7 +24,7 @@ public class DeltaStatisticsActivity extends Activity
 	// Time delay in AlarmManager before the first alarm is fired
 	public static final int ALARM_DELAY = 120000;
 	// Time between alarms in AlarmManager
-	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+	public static final long ALARM_PERIOD = AlarmManager.INTERVAL_DAY;
 	private static Context _context;
 	// Unique request code for PendingIntent (used to distinguish intents)
 	public static final int INTENT_REQUEST_CODE = 0;
@@ -37,33 +37,25 @@ public class DeltaStatisticsActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);  
-        
-        // EULA is not shown due to Dr. Christensen suggestion
-        /*if (!EULAManager.TokenExists())
+         
+        if (!TokenManager.TokenExists(TokenManager.AFTER_FIRST_RUN_TOKEN))
     	{
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    		builder.setMessage(Constants.MsgEULA)
-    			   .setTitle(Constants.MsgTitleEULA)
+    		builder.setMessage(Constants.MsgFirstRun)
+    			   .setTitle(Constants.MsgAppWelcome)
     		       .setCancelable(false)
     		       .setPositiveButton("OK", new DialogInterface.OnClickListener()
 		       	   {
     		           public void onClick(DialogInterface dialog, int id) 
     		           {
-    		        	   EULAManager.CreateAcceptToken();
-    		           }
-    		       })
-    		       .setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-		       	   {
-    		           public void onClick(DialogInterface dialog, int id) 
-    		           {
-    		        	   finish();
+    		        	   TokenManager.CreateToken(TokenManager.AFTER_FIRST_RUN_TOKEN);
     		           }
     		       });
     		
     		
 			AlertDialog alert = builder.create();
     		alert.show();
-    	}*/
+    	}
         
         DeltaStatisticsActivity._context = getApplicationContext();
         

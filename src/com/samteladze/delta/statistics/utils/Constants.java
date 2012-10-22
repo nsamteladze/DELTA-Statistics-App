@@ -15,9 +15,7 @@ public class Constants
 	public static final String StatisticsAppNameText = "App name: ";
 	public static final String StatisticsVersionNameText = "Version name: ";
 	public static final String StatisticsVersionCodeText = "Version code: ";
-	public static final String StatisticsFirstInstallTimeText = "First install time: ";
 	public static final String StatisticsLastUpdateTimeText = "Last update time: ";
-	public static final String StatisticsCodeSizeText = "Code size: ";
 	public static final String StatisticsNumberOfAppsText = "Number of applications: ";
 	public static final String StatisticsDeviceIDText = "Device ID: ";
 	
@@ -76,4 +74,9 @@ public class Constants
 	public static final String MsgTitleEULA = "End User License Agreement";
 	public static final String MsgCollectionInProcess = "Statistics is currently collecting. Please wait for this process to finish.";
 	public static final String MsgAppTitle = "DELTA Statistics";
+	public static final String MsgAppWelcome = "Welcome to DELTA Statistics!";
+	public static final String MsgFirstRun = 	"This application will automatically collect statistics about " +
+												"the installed applications and networks connectivity on your device. " +
+												"You can get the collected statistics by clicking on the \"E-mail Statistics\" " +
+												"button.";
 }
