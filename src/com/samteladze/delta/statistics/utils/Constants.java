@@ -49,7 +49,7 @@ public class Constants
 	public static final String NotificationAppNameText = "DELTA Statistics";
 	
 	public static final String MsgNoStatistics = "Statistics for your device has not been collected yet. " +
-												 "Please click <Collect statistics> button to collect it now.";
+												 "Please click \"Collect statistics\" button to collect it now.";
 	public static final String MsgEULA = "1. This application is a part of DELTA research project that is done " +
 										 "by Nikolai Samteladze (nsamteladze@mail.usf.edu) at the Department " +
 									 	 "of Computer Science and Engineering at the University of South Florida. " +
@@ -77,6 +77,6 @@ public class Constants
 	public static final String MsgAppWelcome = "Welcome to DELTA Statistics!";
 	public static final String MsgFirstRun = 	"This application will automatically collect statistics about " +
 												"the installed applications and networks connectivity on your device. " +
-												"You can get the collected statistics by clicking on the \"E-mail Statistics\" " +
+												"You can get the collected statistics by clicking on the \"E-mail statistics\" " +
 												"button.";
 }

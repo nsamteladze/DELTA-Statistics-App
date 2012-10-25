@@ -23,6 +23,8 @@ public class OnBootReceiver extends BroadcastReceiver
 		PendingIntent alarmPendingIntent = 
 				PendingIntent.getBroadcast(context, DeltaStatisticsActivity.INTENT_REQUEST_CODE, alarmIntent, 0);
 		
+		intent.putExtra("com.samteladze.delta.statistics.AlarmTime", 12);
+		
 		// Set repeating alarm that will invoke OnAlarmReceiver
 		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
 								  SystemClock.elapsedRealtime() + DeltaStatisticsActivity.ALARM_DELAY, 
